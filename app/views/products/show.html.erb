@@ -1,23 +1,28 @@
-
-<table>
-	<tr>
-		<tb></tb>
-		<tb><%= @product.product_image_id %></tb>
-	</tr>
-	<tr>
-		<tb></tb>
-		<tb><%= @product.product_name %></tb>
-	</tr>
-	<tr>
-		<tb>メーカー</tb>
-		<tb><%= @product.maker %></tb>
-	</tr>
-	<tr>
-		<tb>アルコール度数</tb>
-		<tb><%= @product.degree %></tb>
-	</tr>
-	<tr>
-		<tb>栄養成分表示</tb>
-		<tb><%= @product.nutrition %></tb>
-	</tr>
-</table>
+<div class="container">
+	<div class="row">
+		<div class="col-xs-4">
+			<table  class="table table-striped">
+				<tr align="center">
+					<td colspan="2"><%= attachment_image_tag @product, :product_image, format: 'jpeg', fallback: "no_image.jpg", size: "150x150" %></td>
+				</tr>
+				<tr>
+					<td>商品名</td>
+					<td><%= @product.product_name %></td>
+				</tr>
+				<tr>
+					<td>メーカー</td>
+					<td><%= @product.maker %></td>
+				</tr>
+				<tr>
+					<td>アルコール度数</td>
+					<td><%= @product.degree %></td>
+				</tr>
+				<tr>
+					<td>栄養成分表示</td>
+					<td><%= @product.nutrition %></td>
+				</tr>
+			</table>
+		</div>
+		<%= link_to "一覧へ戻る", products_path, class: "btn btn-default" %>
+	</div>
+</div>
