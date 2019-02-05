@@ -5,7 +5,7 @@
 			<h2>ここでは美味しいレモンサワーを紹介していきます</h2>
 		</div>
 		<% if current_user.try(:admin?) %>
-		<div class="col-xs-6 col-xs-offset-3">
+		<div class="admin-btn col-xs-6 col-xs-offset-3">
 			<%= link_to "管理画面はこちら", "/admin", class: "btn btn-warning btn-block" %>
 		</div>
 		<% end %>
@@ -13,7 +13,7 @@
 
 	<div class="row">
 		<% @products.each do |p| %>
-		<div class="col-xs-3">
+		<div class="product-thumb col-xs-3">
 			<%= link_to product_path(p.id) do %>
 			<div class="text-center">
 				<label><%= attachment_image_tag p, :product_image, format: 'jpeg', fallback: "no_image.jpg", size: "150x150" %></label><br>
@@ -23,5 +23,8 @@
 			<% end %>
 		</div>
 		<% end %>
+	</div>
+		<div class="paginate">
+		<%= paginate @products%>
 	</div>
 </div>
