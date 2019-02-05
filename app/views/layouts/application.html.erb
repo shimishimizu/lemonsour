@@ -1,15 +1,61 @@
 <!DOCTYPE html>
 <html>
-  <head>
-    <title>Lemonsour</title>
-    <%= csrf_meta_tags %>
-    <%= csp_meta_tag %>
+<head>
+  <title>Lemonsour</title>
+  <%= csrf_meta_tags %>
+  <%= csp_meta_tag %>
 
-    <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track': 'reload' %>
-    <%= javascript_include_tag 'application', 'data-turbolinks-track': 'reload' %>
-  </head>
+  <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track': 'reload' %>
+  <%= javascript_include_tag 'application', 'data-turbolinks-track': 'reload' %>
+</head>
 
-  <body>
-    <%= yield %>
-  </body>
+<body>
+  <header>
+    <nav class="navbar navbar-default navbar-fixed-top">
+      <div class="container-fluid">
+        <!-- Brand and toggle get grouped for better mobile display -->
+        <div class="navbar-header">
+          <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1" aria-expanded="false">
+            <span class="sr-only">Toggle navigation</span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+          </button>
+          <a class="navbar-brand" href="#">ロゴが入ります</a>
+        </div>
+
+        <!-- Collect the nav links, forms, and other content for toggling -->
+        <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+          <ul class="nav navbar-nav">
+
+            <% if user_signed_in? %>
+            <li><%= link_to "TOP", root_path %></li>
+            <li><a href="#">MYPAGE</a></li>
+            <li><a href="#">NEWS</a></li>
+            <li><a href="#">REQUEST</a></li>
+            <li><%= link_to "LOGOUT", destroy_user_session_path, method: :delete %></a></li>
+
+            <% else %>
+            <li><%= link_to "TOP", root_path %></li>
+            <li><%= link_to "LOGIN", user_session_path %></li>
+            <li><%= link_to "SIGNUP",  new_user_registration_path %></li>
+            <% end %>
+
+          </ul>
+          <form class="navbar-form navbar-right">
+            <div class="form-group">
+              <input type="text" class="form-control" placeholder="商品名・メーカー名">
+            </div>
+            <button type="submit" class="btn btn-default">Search</button>
+          </form>
+        </ul>
+      </div><!-- /.navbar-collapse -->
+    </div><!-- /.container-fluid -->
+  </nav>
+
+  <hr style="margin: 10px 0;">
+</header>
+
+<%= yield %>
+</body>
 </html>
