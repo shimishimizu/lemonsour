@@ -1,2 +1,27 @@
-<h1>Products#index</h1>
-<p>Find me in app/views/products/index.html.erb</p>
+<div class="container">
+	<div class="row">
+		<div class="text-center">
+			<h1>ようこそ　レモンサワーが飲みたい　へ！！</h1>
+			<h2>ここでは美味しいレモンサワーを紹介していきます</h2>
+		</div>
+		<% if current_user.try(:admin?) %>
+		<div class="col-xs-6 col-xs-offset-3">
+			<%= link_to "管理画面はこちら", "/admin", class: "btn btn-warning btn-block" %>
+		</div>
+		<% end %>
+	</div>
+
+	<div class="row">
+		<% @products.each do |p| %>
+		<div class="col-xs-3">
+			<%= link_to product_path(p.id) do %>
+			<div class="text-center">
+				<label><%= attachment_image_tag p, :product_image, format: 'jpeg', fallback: "no_image.jpg", size: "150x150" %></label><br>
+				<label></label>
+				<label class="text-center"><%= p.product_name %></label>
+			</div>
+			<% end %>
+		</div>
+		<% end %>
+	</div>
+</div>
