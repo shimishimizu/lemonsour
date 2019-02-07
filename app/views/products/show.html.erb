@@ -27,7 +27,9 @@
 			<h3 align="center">レビュー投稿</h3>
 			<%= form_for [@product,@review] do |review| %>
 			<label>評価</label>
-			<%= review.number_field :review_star %><br>
+			<%= review.hidden_field :review_star, id: :rating %>
+			<div id='star-rating'></div><br>
+
 			<label>レビュー内容</label>
 			<%= review.text_area :opinion, :size => "50x10" %><br>
 			<%= review.submit "投稿する" %>
@@ -37,22 +39,37 @@
 		<div class="col-xs-7 col-xs-offset-1">
 
 			<div class="row">
-						<h3>レビュー <%= @reviews.total_count %> 件</h3>
+				<h3>レビュー <%= @reviews.total_count %> 件</h3>
 				<% @reviews.each do |reviews| %>
 
 				<div class="col-xs-12">
 					<%= link_to user_path(reviews.user.id) do %>
 					<%= attachment_image_tag reviews.user, :profile_image, format: 'jpeg', fallback: "no_image.jpg", size: "75x75" %>
 					<%= reviews.user.name %>
+					<% end %><br>
+
+					<% if reviews.review_star != nil %>
+					<% reviews.review_star.times do |star| %>
+					<%= image_tag('star-on.png', size: '20x20') %>
 					<% end %>
 
-					<%= reviews.review_star %>
+					<% star_count = 5 - reviews.review_star %>
+					<% if star_count > -1 %>
+					<% star_count.times do |star| %>
+					<%= image_tag('star-off.png', size: '20x20') %>
+					<% end %>
+					<% end %>
+
+					<% else %>
+					<span>no reviwes</span>
+					<% end %>
+
+
 					<div style="text-align: right;"><%= reviews.created_at %></div>
-					<pre><%= reviews.opinion %></pre>
-					<br>
+					<pre><%= reviews.opinion %></pre><br>
 				</div>
 				<% end %>
-		<%= paginate @reviews %>
+				<%= paginate @reviews %>
 
 			</div>
 
@@ -61,3 +78,12 @@
 	</div>
 	<%= link_to "一覧へ戻る", products_path, class: "btn btn-default" %>
 </div>
+
+<script>
+	$('#star-rating').raty({
+		path: '/assets/',
+		click: function(score, e) {
+			$("#rating").val(score)
+		}
+	});
+</script>
