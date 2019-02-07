@@ -6,4 +6,5 @@ Rails.application.routes.draw do
 
   root 'products#index'
   resources :products, only: [:index, :show]
+  resources :users, only: [:show, :edit, :update]
 end

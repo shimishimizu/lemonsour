@@ -1,0 +1,31 @@
+<div class="container">
+	<div class="row">
+		<div class="col-xs-4">
+
+			<table  class="table">
+				<tr align="center">
+					<%= form_for @user do |user| %>
+					<td colspan="2"><%= user.attachment_field :profile_image %></td>
+				</tr>
+				<tr>
+					<td>ユーザ名</td>
+					<td><%= user.text_field :name %></td>
+				</tr>
+				<tr>
+					<td>email</td>
+					<td><%= user.email_field :email %></td>
+				</tr>
+				<tr>
+					<td>自己紹介</td>
+					<td><%= user.text_area :introduction %></td>
+				</tr>
+			</table>
+			<%= link_to "戻る", user_path(@user.id), class: "btn btn-default" %>
+			<%= user.submit "保存", class: "btn btn-info" %>
+			<% end %>
+		</div>
+		<div class="col-xs-8">
+			<%= link_to "退会", user_registration_path, method: :delete, "data-confirm" => "本当に削除しますか？", class: "btn btn-danger" %>
+		</div>
+	</div>
+</div>
