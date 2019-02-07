@@ -6,7 +6,8 @@ class ProductsController < ApplicationController
   def show
   	@product = Product.find(params[:id])
     @review = Review.new
-    # @reviews = Review.where(params[:product_id])
+    #@reviews = Review.where(product_id: @product)
+    @reviews = Kaminari.paginate_array(Review.where(product_id: @product)).page(params[:page]).per(5)
 
   end
 
