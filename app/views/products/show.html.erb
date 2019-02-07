@@ -1,7 +1,7 @@
 <div class="container">
 	<div class="row">
 		<div class="col-xs-4">
-			<table  class="table table-striped">
+			<table  class="table">
 				<tr align="center">
 					<td colspan="2"><%= attachment_image_tag @product, :product_image, format: 'jpeg', fallback: "no_image.jpg", size: "150x150" %></td>
 				</tr>
@@ -22,7 +22,41 @@
 					<td><%= @product.nutrition %></td>
 				</tr>
 			</table>
+
+			<h3 align="center">レビュー投稿</h3>
+			<%= form_for [@product,@review] do |review| %>
+			<label>評価</label>
+			<%= review.number_field :review_star %><br>
+			<label>レビュー内容</label>
+			<%= review.text_area :opinion, :size => "50x10" %><br>
+			<%= review.submit "投稿する" %>
+			<% end %>
 		</div>
-		<%= link_to "一覧へ戻る", products_path, class: "btn btn-default" %>
+
+		<div class="col-xs-8">
+			<table>
+				<tr>
+					<th></th>
+					<th>ユーザ名</th>
+					<th>評価</th>
+					<th>投稿日</th>
+				</tr>
+
+				<% @product.reviews.each do |reviews| %>
+				<tr>
+					<td><%= attachment_image_tag reviews.user, :profile_image, format: 'jpeg', fallback: "no_image.jpg", size: "75x75" %></td>
+					<td><%= reviews.user.name %></td>
+					<td><%= reviews.review_star %></td>
+					<td><%= reviews.created_at %></td>
+				</tr>
+				<tr>
+					<td><label>レビュー詳細</label></td>
+					<td colspan="3"><%= reviews.opinion %></td>
+				</tr>
+				<% end %>
+			</table>
+		</div>
+
 	</div>
+	<%= link_to "一覧へ戻る", products_path, class: "btn btn-default" %>
 </div>
