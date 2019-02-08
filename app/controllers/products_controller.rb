@@ -8,7 +8,6 @@ class ProductsController < ApplicationController
     @review = Review.new
     #@reviews = Review.where(product_id: @product)
     @reviews = Kaminari.paginate_array(Review.where(product_id: @product)).page(params[:page]).per(5)
-
   end
 
   private

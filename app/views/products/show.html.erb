@@ -53,22 +53,24 @@
 					<%= reviews.user.name %>
 					<% end %><br>
 
-					<% if reviews.review_star != nil %>
-					<% reviews.review_star.times do |star| %>
-					<%= image_tag('star-on.png', size: '20x20') %>
-					<% end %>
+					<div class="rated" data-score="<%= reviews.review_star %>"></div>
 
-					<% star_count = 5 - reviews.review_star %>
+					<%# if reviews.review_star != nil %>
+					<%# reviews.review_star.times do |star| %>
+					<%#= image_tag('star-on.png', size: '20x20') %>
+					<%# end %>
 
-					<% if star_count > -1 %>
-					<% star_count.times do |star| %>
-					<%= image_tag('star-off.png', size: '20x20') %>
-					<% end %>
-					<% end %>
+					<%# star_count = 5 - reviews.review_star %>
 
-					<% else %>
-					<span>まだ、レビューはありません</span>
-					<% end %>
+					<%# if star_count > -1 %>
+					<%# star_count.times do |star| %>
+					<%#= image_tag('star-off.png', size: '20x20') %>
+					<%# end %>
+					<%# end %>
+
+					<%# else %>
+					<!-- <span>まだ、レビューはありません</span> -->
+					<%# end %>
 
 
 					<div style="text-align: right;"><%= reviews.created_at %></div>
@@ -92,4 +94,12 @@
 			$("#rating").val(score)
 		}
 	});
+
+    $('.rated').raty({
+    	path: '/assets',
+     	readOnly: true,
+     	score: function() {
+     	return $(this).attr('data-score');
+     	}
+    });
 </script>
