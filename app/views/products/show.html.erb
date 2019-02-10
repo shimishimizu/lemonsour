@@ -44,16 +44,16 @@
 		<div class="col-xs-7 col-xs-offset-1">
 
 			<div class="row">
-				<h3>レビュー <%= @reviews.total_count %> 件</h3><br>
+				<h3>レビュー全 <%= @reviews.total_count %> 件</h3><br>
 				<% @reviews.each do |review| %>
 
 				<div class="col-xs-12">
 
 					<!-- Newアイコン -->
 					<% if review.is_new %>
-					<p  class="new-review">NEW!!</p>
+					<p  class="new-review"><%= image_tag 'lemondanmen.jpg', :size =>'20x20' %>NEW<%= image_tag 'lemondanmen.jpg', :size =>'20x20' %></p>
 					<% elsif review.is_update %>
-					<p  class="update-review">UPDATE!!</p>
+					<p  class="update-review"><%= image_tag 'lemonsibori.jpg', :size =>'20x20' %>UPDATE<%= image_tag 'lemonsibori.jpg', :size =>'20x20' %></p>
 					<% end %>
 
 					<%= link_to user_path(review.user.id) do %>
