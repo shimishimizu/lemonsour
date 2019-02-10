@@ -21,5 +21,58 @@
 			</table>
 			<%= link_to "編集", edit_user_path(@user.id), class: "btn btn-success" %>
 		</div>
+
+		<div class="col-xs-7 col-xs-offset-1">
+
+			<div class="row">
+				<h3>レビュー全 <%= @reviews.total_count %> 件</h3><br>
+				<% @reviews.each do |review| %>
+
+				<div class="col-xs-12">
+
+					<!-- Newアイコン -->
+					<% if review.is_new %>
+					<p  class="new-review">NEW!!</p>
+					<% elsif review.is_update %>
+					<p  class="update-review">UPDATE!!</p>
+					<% end %>
+
+					<%= link_to product_path(review.product.id) do %>
+					<%= attachment_image_tag review.product, :product_image, format: 'jpeg', fallback: "no_image.jpg", size: "75x75" %>
+					<%= review.product.product_name %>
+					<% end %><br>
+
+					<div class="rated" data-score="<%= review.review_star %>"></div>
+					<div style="text-align: right;">
+						<%= link_to "編集", edit_user_review_path(@user.id,review), class: "btn btn-success" %>
+						<%= link_to "削除", user_review_path(@user.id,review), method: :delete, "data-confirm" => "本当に削除しますか？", class: "btn btn-danger" %>
+					</div>
+					<div style="text-align: right;">
+						<% if review.created_at == review.updated_at %>
+						<label>投稿日：</label><%= review.created_at.strftime('%Y年%m月%d日 %H時%M分') %>
+						<% else %>
+						<label>更新日：</label><%= review.updated_at.strftime('%Y年%m月%d日 %H時%M分') %>
+						<label>投稿日：</label><%= review.created_at.strftime('%Y年%m月%d日 %H時%M分') %>
+						<% end %>
+					</div>
+					<pre><%= review.opinion %></pre><br>
+				</div>
+				<% end %>
+				<div class="paginate">
+					<%= paginate @reviews %>
+				</div>
+			</div>
+		</div>
 	</div>
+	<%= link_to "一覧へ戻る", products_path, class: "btn btn-default" %>
 </div>
+
+<script>
+	$('.rated').raty({
+		path: '/assets',
+		readOnly: true,
+		score: function() {
+			return $(this).attr('data-score');
+		}
+	});
+</script>

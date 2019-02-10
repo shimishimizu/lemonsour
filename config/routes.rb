@@ -10,5 +10,8 @@ Rails.application.routes.draw do
   	resources :reviews, only: [:create, :update, :destroy]
   end
 
-  resources :users, only: [:show, :edit, :update]
+  resources :users, only: [:show, :edit, :update] do
+	resources :reviews, only: [:edit, :update, :destroy]
+  end
+
 end
