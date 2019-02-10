@@ -21,5 +21,46 @@
 			</table>
 			<%= link_to "編集", edit_user_path(@user.id), class: "btn btn-success" %>
 		</div>
+
+		<div class="col-xs-7 col-xs-offset-1">
+
+			<div class="row">
+				<h3>レビュー <%= @reviews.total_count %> 件</h3>
+				<% @reviews.each do |reviews| %>
+
+				<div class="col-xs-12">
+					<%= link_to product_path(reviews.product.id) do %>
+					<%= attachment_image_tag reviews.product, :product_image, format: 'jpeg', fallback: "no_image.jpg", size: "75x75" %>
+					<%= reviews.product.product_name %>
+					<% end %><br>
+
+					<div class="rated" data-score="<%= reviews.review_star %>"></div>
+					<div style="text-align: right;">
+						<%= link_to "編集", edit_user_review_path(@user.id,reviews), class: "btn btn-success" %>
+						<%= link_to "削除", user_review_path(@user.id,reviews), method: :delete, "data-confirm" => "本当に削除しますか？", class: "btn btn-danger" %>
+						<%= reviews.created_at.strftime('%Y/%m/%d')  %>
+					</div>
+					<pre><%= reviews.opinion %></pre><br>
+				</div>
+				<% end %>
+				<div class="paginate">
+					<%= paginate @reviews %>
+				</div>
+
+			</div>
+
+		</div>
+
 	</div>
+	<%= link_to "一覧へ戻る", products_path, class: "btn btn-default" %>
 </div>
+
+<script>
+	$('.rated').raty({
+		path: '/assets',
+		readOnly: true,
+		score: function() {
+			return $(this).attr('data-score');
+		}
+	});
+</script>

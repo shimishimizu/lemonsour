@@ -1,6 +1,7 @@
 class UsersController < ApplicationController
   def show
   	@user = User.find(params[:id])
+    @reviews = Kaminari.paginate_array(Review.where(user_id: @user)).page(params[:page]).per(5)
   end
 
   def edit

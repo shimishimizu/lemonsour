@@ -7,10 +7,17 @@ class ReviewsController < ApplicationController
 		redirect_to product_path(product.id)
 	end
 
+	def edit
+	end
+
 	def update
 	end
 
 	def destroy
+		@reviews = Review.find(params[:id])
+		@user = User.where(review_id: @reviews)
+		@reviews.destroy!
+		redirect_to user_path(current_user)
 	end
 
 	private

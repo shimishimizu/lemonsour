@@ -33,7 +33,8 @@
               <li><%= link_to "MYPAGE", user_path(current_user) %></li>
               <li><a href="#">NEWS</a></li>
               <li><a href="#">REQUEST</a></li>
-              <li><%= link_to "LOGOUT", destroy_user_session_path, method: :delete %></a></li>
+              <li><%= link_to "LOGOUT", destroy_user_session_path, method: :delete %></li>
+              <li>ようこそ　<%= current_user.name %> さん</li>
 
               <% else %>
               <li><%= link_to "TOP", root_path %></li>

@@ -73,11 +73,13 @@
 					<%# end %>
 
 
-					<div style="text-align: right;"><%= reviews.created_at %></div>
+					<div style="text-align: right;"><%= reviews.created_at.strftime('%Y/%m/%d')  %></div>
 					<pre><%= reviews.opinion %></pre><br>
 				</div>
 				<% end %>
-				<%= paginate @reviews %>
+				<div class="paginate">
+					<%= paginate @reviews %>
+				</div>
 
 			</div>
 
@@ -95,11 +97,11 @@
 		}
 	});
 
-    $('.rated').raty({
-    	path: '/assets',
-     	readOnly: true,
-     	score: function() {
-     	return $(this).attr('data-score');
-     	}
-    });
+	$('.rated').raty({
+		path: '/assets',
+		readOnly: true,
+		score: function() {
+			return $(this).attr('data-score');
+		}
+	});
 </script>
