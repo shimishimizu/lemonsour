@@ -7,7 +7,7 @@ class ProductsController < ApplicationController
   	@product = Product.find(params[:id])
     @review = Review.new
     #@reviews = Review.where(product_id: @product)
-    @reviews = Kaminari.paginate_array(Review.where(product_id: @product)).page(params[:page]).per(5)
+    @reviews = Kaminari.paginate_array(Review.where(product_id: @product).order('updated_at DESC')).page(params[:page]).per(5)
   end
 
   private

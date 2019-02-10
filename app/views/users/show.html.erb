@@ -36,9 +36,13 @@
 
 					<div class="rated" data-score="<%= reviews.review_star %>"></div>
 					<div style="text-align: right;">
+						<% if reviews.created_at == reviews.updated_at %>
+						投稿日：<%= reviews.created_at.strftime('%Y年%m月%d日 %H時%M分') %>
+						<% else %>
+						更新日：<%= reviews.updated_at.strftime('%Y年%m月%d日 %H時%M分') %>
+						<% end %>
 						<%= link_to "編集", edit_user_review_path(@user.id,reviews), class: "btn btn-success" %>
 						<%= link_to "削除", user_review_path(@user.id,reviews), method: :delete, "data-confirm" => "本当に削除しますか？", class: "btn btn-danger" %>
-						<%= reviews.created_at.strftime('%Y/%m/%d')  %>
 					</div>
 					<pre><%= reviews.opinion %></pre><br>
 				</div>

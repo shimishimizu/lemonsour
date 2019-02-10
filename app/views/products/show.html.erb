@@ -44,16 +44,24 @@
 		<div class="col-xs-7 col-xs-offset-1">
 
 			<div class="row">
-				<h3>レビュー <%= @reviews.total_count %> 件</h3>
-				<% @reviews.each do |reviews| %>
+				<h3>レビュー <%= @reviews.total_count %> 件</h3><br>
+				<% @reviews.each do |review| %>
 
 				<div class="col-xs-12">
-					<%= link_to user_path(reviews.user.id) do %>
-					<%= attachment_image_tag reviews.user, :profile_image, format: 'jpeg', fallback: "no_image.jpg", size: "75x75" %>
-					<%= reviews.user.name %>
+
+					<!-- Newアイコン -->
+					<% if review.is_new %>
+					<p  class="new-review">NEW!!</p>
+					<% elsif review.is_update %>
+					<p  class="update-review">UPDATE!!</p>
+					<% end %>
+
+					<%= link_to user_path(review.user.id) do %>
+					<%= attachment_image_tag review.user, :profile_image, format: 'jpeg', fallback: "no_image.jpg", size: "75x75" %>
+					<%= review.user.name %>
 					<% end %><br>
 
-					<div class="rated" data-score="<%= reviews.review_star %>"></div>
+					<div class="rated" data-score="<%= review.review_star %>"></div>
 
 					<%# if reviews.review_star != nil %>
 					<%# reviews.review_star.times do |star| %>
@@ -72,9 +80,15 @@
 					<!-- <span>まだ、レビューはありません</span> -->
 					<%# end %>
 
-
-					<div style="text-align: right;"><%= reviews.created_at.strftime('%Y/%m/%d')  %></div>
-					<pre><%= reviews.opinion %></pre><br>
+					<div style="text-align: right;">
+						<% if review.created_at == review.updated_at %>
+						<label>投稿日：</label><%= review.created_at.strftime('%Y年%m月%d日 %H時%M分') %>
+						<% else %>
+						<label>更新日：</label><%= review.updated_at.strftime('%Y年%m月%d日 %H時%M分') %>
+						<label>投稿日：</label><%= review.created_at.strftime('%Y年%m月%d日 %H時%M分') %>
+						<% end %>
+					</div>
+					<pre><%= review.opinion %></pre><br>
 				</div>
 				<% end %>
 				<div class="paginate">

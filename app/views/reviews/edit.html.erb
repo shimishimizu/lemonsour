@@ -1,0 +1,50 @@
+<div class="container">
+	<div class="row">
+		<div class="col-xs-4">
+			<table  class="table">
+				<tr align="center">
+					<td colspan="2"><%= attachment_image_tag @product, :product_image, format: 'jpeg', fallback: "no_image.jpg", size: "150x150" %>
+					</td>
+				</tr>
+				<tr>
+					<td>商品名</td>
+					<td><%= @product.product_name %></td>
+				</tr>
+				<tr>
+					<td>メーカー</td>
+					<td><%= @product.maker %></td>
+				</tr>
+				<tr>
+					<td>アルコール度数</td>
+					<td><%= @product.degree %></td>
+				</tr>
+				<tr>
+					<td>栄養成分表示</td>
+					<td><%= @product.nutrition %></td>
+				</tr>
+			</table>
+
+			<h3 align="center">レビュー編集</h3>
+			<%= form_for @review, :url => { :controller => :reviews, :action => :update } do |review| %>
+				<label>評価</label>
+				<%= review.hidden_field :review_star, id: :rating %>
+				<div id="star-rating" data-score="<%= @review.review_star %>"></div><br>
+
+				<label>レビュー内容</label>
+				<%= review.text_area :opinion, :size => "50x10" %><br>
+				<%= review.submit "保存" %>
+			<% end %>
+		</div>
+
+	</div>
+	<%= link_to "詳細へ戻る", product_path(@product.id), class: "btn btn-default" %>
+</div>
+
+<script>
+	$('#star-rating').raty({
+		path: '/assets/',
+		click: function(score, e) {
+			$("#rating").val(score)
+		}
+	});
+</script>
