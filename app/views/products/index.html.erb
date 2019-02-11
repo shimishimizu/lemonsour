@@ -19,6 +19,8 @@
 				<label><%= attachment_image_tag p, :product_image, format: 'jpeg', fallback: "no_image.jpg", size: "150x150" %></label><br>
 				<label></label>
 				<label class="text-center"><%= p.product_name %></label>
+				<i class="fas fa-file-alt"></i><%= p.reviews.count %>
+
 			</div>
 			<% end %>
 		</div>
