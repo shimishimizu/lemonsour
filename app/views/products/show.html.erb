@@ -51,9 +51,12 @@
 
 					<!-- Newアイコン -->
 					<% if review.is_new %>
-					<p  class="new-review"><%= image_tag 'lemondanmen.jpg', :size =>'20x20' %>NEW<%= image_tag 'lemondanmen.jpg', :size =>'20x20' %></p>
+					<p  class="new-review"><%= image_tag 'newlogo.gif', :size =>'40x15' %></p>
+					<% elsif review.is_both %>
+					<p  class="new-review"><%= image_tag 'newlogo.gif', :size =>'40x15' %></p>
+					<p  class="update-review"><%= image_tag 'updatelogo.gif', :size =>'60x15' %></p>
 					<% elsif review.is_update %>
-					<p  class="update-review"><%= image_tag 'lemonsibori.jpg', :size =>'20x20' %>UPDATE<%= image_tag 'lemonsibori.jpg', :size =>'20x20' %></p>
+					<p  class="update-review"><%= image_tag 'updatelogo.gif', :size =>'60x15' %></p>
 					<% end %>
 
 					<%= link_to user_path(review.user.id) do %>
