@@ -1,3 +1,27 @@
 // Place all the styles related to the users controller here.
 // They will automatically be included in application.css.
 // You can use Sass (SCSS) here: http://sass-lang.com/
+
+//マイページ
+.user-favorite-counter{
+	text-align: center;
+}
+.user-noreview{
+	text-align: center;
+	margin-top: 150px;
+}
+.review-counter{
+	text-align: center;
+}
+.user-edit-buttom{
+	text-align: right;
+}
+.user-date{
+	text-align: right;
+}
+.user-buttom{
+	text-align: right;
+}
+.user-index-buttom{
+	margin-bottom: 10px;
+}
