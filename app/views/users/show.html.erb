@@ -7,6 +7,20 @@
 					<td colspan="2"><%= attachment_image_tag @user, :profile_image, format: 'jpg', fallback: "no_image.jpg", size: "150x150" %></td>
 				</tr>
 				<tr>
+					<td colspan="2" class="user-favorite-counter">
+						<% if @user.favorites.empty? %>
+						<i class="far fa-heart" aria-hidden="true"></i>
+						まだお気に入りはありません<br>
+						ハートをクリックするとここに表示されます
+						<% else %>
+						<%= link_to user_favorites_path(@user.id) do %>
+						<i class="fa fa-heart" aria-hidden="true" style="color: red;"></i>
+						<%= @user.favorites.count %>  件のお気に入り
+						<% end %>
+						<% end %>
+					</td>
+				</tr>
+				<tr>
 					<td>ユーザ名</td>
 					<td><%= @user.name %></td>
 				</tr>
@@ -19,13 +33,21 @@
 					<td><%= @user.introduction %></td>
 				</tr>
 			</table>
-			<%= link_to "編集", edit_user_path(@user.id), class: "btn btn-success" %>
+			<div class="user-edit-buttom">
+				<%= link_to "編集", edit_user_path(@user.id), class: "btn btn-success" %>
+			</div>
 		</div>
 
 		<div class="col-xs-7 col-xs-offset-1">
 
 			<div class="row">
-				<h3>レビュー全 <%= @reviews.total_count %> 件</h3><br>
+				<% if @reviews.empty? %>
+				<div class="user-noreview">
+					<h3>レビューはまだありません</h3>
+					<p>レビューを投稿するとここに表示されます</p>
+				</div>
+				<% else %>
+				<h3 class="review-counter">レビュー全 <%= @reviews.total_count %> 件</h3><br>
 				<% @reviews.each do |review| %>
 
 				<div class="col-xs-12">
@@ -46,11 +68,11 @@
 					<% end %><br>
 
 					<div class="rated" data-score="<%= review.review_star %>"></div>
-					<div style="text-align: right;">
+					<div class="user-buttom">
 						<%= link_to "編集", edit_user_review_path(@user.id,review), class: "btn btn-success" %>
 						<%= link_to "削除", user_review_path(@user.id,review), method: :delete, "data-confirm" => "本当に削除しますか？", class: "btn btn-danger" %>
 					</div>
-					<div style="text-align: right;">
+					<div class="user-date">
 						<% if review.created_at == review.updated_at %>
 						<label>投稿日：</label><%= review.created_at.strftime('%Y年%m月%d日 %H時%M分') %>
 						<% else %>
@@ -61,13 +83,16 @@
 					<pre><%= review.opinion %></pre><br>
 				</div>
 				<% end %>
+				<% end %>
 				<div class="paginate">
 					<%= paginate @reviews %>
 				</div>
 			</div>
 		</div>
 	</div>
-	<%= link_to "一覧へ戻る", products_path, class: "btn btn-default" %>
+	<div class="user-index-buttom">
+		<%= link_to "一覧へ戻る", products_path, class: "btn btn-default" %>
+	</div>
 </div>
 
 <script>

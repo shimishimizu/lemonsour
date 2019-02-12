@@ -4,11 +4,31 @@
 			<table  class="table">
 				<tr align="center">
 					<td colspan="2"><%= attachment_image_tag @product, :product_image, format: 'jpeg', fallback: "no_image.jpg", size: "150x150" %>
+						<!-- いいね -->
+						<% if user_signed_in? %>
+							<% if @product.favorited_by?(current_user) %>
+								<%= link_to product_favorite_path(@product), method: :delete do %>
+									<i class="heart-icon fa fa-heart" aria-hidden="true" style="color: red;"></i><br>
+								<% end %>
+
+								<% else %>
+								<%= link_to product_favorites_path(@product), method: :post do %>
+									<i class="heart-icon far fa-heart" aria-hidden="true"></i><br>
+								<% end %>
+							<% end %>
+						<% end %>
 					</td>
 				</tr>
 				<tr align="center">
 					<td colspan="2">
 						ここに平均値を入れたいです
+					</td>
+				</tr>
+				<tr align="center">
+					<td colspan="2">
+						<%= link_to product_users_path(@product.id) do %>
+						<%= @product.favorites.count %> 人がお気に入り
+						<% end %>
 					</td>
 				</tr>
 				<tr>
@@ -29,6 +49,7 @@
 				</tr>
 			</table>
 
+			<% if user_signed_in? %>
 			<h3 align="center">レビュー投稿</h3>
 			<%= form_for [@product,@review] do |review| %>
 			<label>評価</label>
@@ -39,12 +60,19 @@
 			<%= review.text_area :opinion, :size => "50x10" %><br>
 			<%= review.submit "投稿する" %>
 			<% end %>
+			<% end %>
 		</div>
 
 		<div class="col-xs-7 col-xs-offset-1">
 
 			<div class="row">
-				<h3>レビュー全 <%= @reviews.total_count %> 件</h3><br>
+				<% if @reviews.empty? %>
+				<div class="p-noreview">
+					<h3>レビューはまだありません</h3>
+					<p>この商品のレビューを投稿するとここに表示されます</p>
+				</div>
+				<% else %>
+				<h3 class="p-review-counter">レビュー全 <%= @reviews.total_count %> 件</h3><br>
 				<% @reviews.each do |review| %>
 
 				<div class="col-xs-12">
@@ -66,24 +94,7 @@
 
 					<div class="rated" data-score="<%= review.review_star %>"></div>
 
-					<%# if reviews.review_star != nil %>
-					<%# reviews.review_star.times do |star| %>
-					<%#= image_tag('star-on.png', size: '20x20') %>
-					<%# end %>
-
-					<%# star_count = 5 - reviews.review_star %>
-
-					<%# if star_count > -1 %>
-					<%# star_count.times do |star| %>
-					<%#= image_tag('star-off.png', size: '20x20') %>
-					<%# end %>
-					<%# end %>
-
-					<%# else %>
-					<!-- <span>まだ、レビューはありません</span> -->
-					<%# end %>
-
-					<div style="text-align: right;">
+					<div class="p-date">
 						<% if review.created_at == review.updated_at %>
 						<label>投稿日：</label><%= review.created_at.strftime('%Y年%m月%d日 %H時%M分') %>
 						<% else %>
@@ -94,6 +105,7 @@
 					<pre><%= review.opinion %></pre><br>
 				</div>
 				<% end %>
+				<% end %>
 				<div class="paginate">
 					<%= paginate @reviews %>
 				</div>
@@ -103,7 +115,9 @@
 		</div>
 
 	</div>
-	<%= link_to "一覧へ戻る", products_path, class: "btn btn-default" %>
+	<div class="p-index-button">
+		<%= link_to "一覧へ戻る", products_path, class: "btn btn-default" %>
+	</div>
 </div>
 
 <script>

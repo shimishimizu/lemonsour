@@ -1,4 +1,9 @@
 class UsersController < ApplicationController
+  def index
+    @product = Product.find(params[:product_id])
+    @favorites = Favorite.where(product_id: @product)
+  end
+
   def show
     @user = User.find(params[:id])
     @reviews = Kaminari.paginate_array(Review.where(user_id: @user).order('updated_at DESC')).page(params[:page]).per(5)

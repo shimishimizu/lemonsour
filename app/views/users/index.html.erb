@@ -1,0 +1,53 @@
+<div class="container">
+	<div class="row">
+		<% @favorites.each do |favorite| %>
+		<div class="col-xs-4">
+			<table  class="table">
+				<tr align="center">
+					<td colspan="2">
+						<%= link_to user_path(favorite.user.id) do %>
+						<%= attachment_image_tag favorite.user, :profile_image, format: 'jpg', fallback: "no_image.jpg", size: "150x150" %>
+						<% end %>
+					</td>
+				</tr>
+				<tr>
+					<td colspan="2" class="user-favorite-counter">
+						<% if favorite.user.favorites.empty? %>
+						<i class="far fa-heart" aria-hidden="true"></i>
+						まだお気に入りはありません<br>
+						ハートをクリックするとここに表示されます
+						<% else %>
+						<%= link_to user_favorites_path(favorite.user.id) do %>
+						<i class="fa fa-heart" aria-hidden="true" style="color: red;"></i>
+						<%= favorite.user.favorites.count %>  件のお気に入り
+						<% end %>
+						<% end %>
+					</td>
+				</tr>
+				<tr>
+					<td>ユーザ名</td>
+					<td>
+						<%= link_to user_path(favorite.user.id) do %>
+						<%= favorite.user.name %>
+						<% end %>
+					</td>
+				</tr>
+				<tr>
+					<td>自己紹介</td>
+					<td><%= favorite.user.introduction %></td>
+				</tr>
+			</table>
+		</div>
+		<% end %>
+
+		<div class="col-xs-7 col-xs-offset-1">
+
+			<div class="row">
+
+			</div>
+		</div>
+	</div>
+	<div class="user-index-buttom">
+		<%= link_to "一覧へ戻る", products_path, class: "btn btn-default" %>
+	</div>
+</div>
