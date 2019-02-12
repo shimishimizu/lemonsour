@@ -1,0 +1,47 @@
+// Place all the styles related to the Informations controller here.
+// They will automatically be included in application.css.
+// You can use Sass (SCSS) here: http://sass-lang.com/
+
+//information一覧
+.info-headline{
+	font-size: 20px;
+}
+.information-box{
+	width: 100%;
+	padding: 30px;
+	margin: 30px auto;
+	box-shadow: 10px 10px 10px rgba(0,0,0,0.1);
+}
+.info-date{
+	text-align:right;
+}
+.information-image{
+	display: inline;
+}
+.information-index-title{
+	font-size: 20px;
+	word-wrap:break-word;
+	padding-top: 40px;
+}
+.information-index-content{
+	font-size: 15px;
+	word-wrap:break-word;
+	padding-top: 25px;
+}
+
+//information詳細
+.information-title{
+	font-size:50px;
+	word-wrap:break-word;
+}
+.information-date{
+	text-align:right;
+}
+.information-content{
+	font-size: 20px;
+	word-wrap:break-word;
+	white-space: pre-wrap;
+}
+.info-index-button{
+	margin: 20px;
+}

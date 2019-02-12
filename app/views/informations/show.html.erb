@@ -1,0 +1,37 @@
+<div class="container">
+	<div class="row">
+
+		<div class="col-xs-12">
+			<div class="information-title">
+				<%= @information.information_title %>
+			</div>
+			<div class="information-date">
+				<% if @information.created_at == @information.updated_at %>
+				掲載日：<%= @information.created_at.strftime('%Y年%m月%d日 %H時%M分') %>
+				<% else %>
+				更新日：<%= @information.updated_at.strftime('%Y年%m月%d日 %H時%M分') %>
+				掲載日：<%= @information.created_at.strftime('%Y年%m月%d日 %H時%M分') %>
+				<% end %>
+			</div>
+			<!-- information画像 -->
+			<% if @information.information_images.present? %>
+				<% @information.information_images.each do |image| %>
+				<%= attachment_image_tag image, :information_image, format: 'jpeg', size: "150x150" %>
+				<% end %>
+			<% else %>
+			<%= image_tag 'no_image.jpg', size: '200x200' %>
+			<% end %>
+		</div>
+	</div>
+	<div class="row">
+		<div class="col-xs-12">
+			<!-- information本文 -->
+			<div class="information-content">
+				<%= @information.information_content %>
+			</div>
+		</div>
+	</div>
+	<div class="info-index-button">
+		<%= link_to "一覧に戻る", informations_path, class: "btn btn-default" %>
+	</div>
+</div>

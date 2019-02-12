@@ -31,7 +31,7 @@
               <% if user_signed_in? %>
               <li><%= link_to "TOP", root_path %></li>
               <li><%= link_to "MYPAGE", user_path(current_user) %></li>
-              <li><a href="#">NEWS</a></li>
+              <li><%= link_to "INFORMATION", informations_path %></li>
               <li><a href="#">REQUEST</a></li>
               <li><%= link_to "LOGOUT", destroy_user_session_path, method: :delete %></li>
               <li>ようこそ　<%= current_user.name %> さん</li>
