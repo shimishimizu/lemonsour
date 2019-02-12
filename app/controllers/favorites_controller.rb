@@ -1,5 +1,7 @@
 class FavoritesController < ApplicationController
   def index
+    @user = User.find(params[:user_id])
+    @favorites = Kaminari.paginate_array(Favorite.where(user_id: @user).order('updated_at DESC')).page(params[:page]).per(8)
   end
 
   def create

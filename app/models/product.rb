@@ -10,4 +10,9 @@ class Product < ApplicationRecord
 	def favorited_by?(user)
     	favorites.where(user_id: user.id).exists?
     end
+
+    def reviewed_by?(user)
+    	reviews.where(user_id: user.id).exists?
+    end
+
 end

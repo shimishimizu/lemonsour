@@ -4,6 +4,19 @@
 			<table  class="table">
 				<tr align="center">
 					<td colspan="2"><%= attachment_image_tag @product, :product_image, format: 'jpeg', fallback: "no_image.jpg", size: "150x150" %>
+						<!-- いいね -->
+						<% if user_signed_in? %>
+							<% if @product.favorited_by?(current_user) %>
+								<%= link_to product_favorite_path(@product), method: :delete do %>
+									<i class="heart-icon fa fa-heart" aria-hidden="true" style="color: red;"></i><br>
+								<% end %>
+
+								<% else %>
+								<%= link_to product_favorites_path(@product), method: :post do %>
+									<i class="heart-icon far fa-heart" aria-hidden="true"></i><br>
+								<% end %>
+							<% end %>
+						<% end %>
 					</td>
 				</tr>
 				<tr align="center">
@@ -13,20 +26,8 @@
 				</tr>
 				<tr align="center">
 					<td colspan="2">
-						<% if @product.favorited_by?(current_user) %>
-
-						<%= link_to product_favorite_path(@product), method: :delete do %>
-						<i class="fa fa-heart" aria-hidden="true" style="color: red;"></i>
-						<%= @product.favorites.count %> お気に入り
-						<% end %>
-
-						<% else %>
-
-						<%= link_to product_favorites_path(@product), method: :post do %>
-						<i class="far fa-heart" aria-hidden="true"></i>
-						<%= @product.favorites.count %> お気に入り
-						<% end %>
-
+						<%= link_to product_users_path(@product.id) do %>
+						<%= @product.favorites.count %> 人がお気に入り
 						<% end %>
 					</td>
 				</tr>
@@ -48,6 +49,7 @@
 				</tr>
 			</table>
 
+			<% if user_signed_in? %>
 			<h3 align="center">レビュー投稿</h3>
 			<%= form_for [@product,@review] do |review| %>
 			<label>評価</label>
@@ -57,6 +59,7 @@
 			<label>レビュー内容</label>
 			<%= review.text_area :opinion, :size => "50x10" %><br>
 			<%= review.submit "投稿する" %>
+			<% end %>
 			<% end %>
 		</div>
 

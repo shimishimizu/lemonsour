@@ -10,12 +10,12 @@ Rails.application.routes.draw do
   resources :products, only: [:index, :show] do
   	resources :reviews, only: [:create, :update, :destroy]
     resources :favorites, only: [:create, :destroy]
+    resources :users, only: [:index]
   end
 
   resources :users, only: [:show, :edit, :update] do
 	  resources :reviews, only: [:edit, :update, :destroy]
     resources :favorites, only: [:index]
-
   end
 
 end

@@ -7,50 +7,15 @@
 .admin-btn{
 	margin: 50px;
 }
+
 .product-thumb{
-	width: 25%;
+	width: 250px;
 	height: 280px;
 	padding: 20px;
-	border: solid 1px;
-	background-color: white;
+	margin: 20px;
+	float: left;
+	box-shadow: 10px 10px 10px rgba(0,0,0,0.1);
 }
-.product-thumb:nth-child(1){
-	position:absolute; top:400px; left:100px; z-index: 1;
-}
-.product-thumb:nth-child(2){
-	position:absolute; top:430px; left:400px; z-index: 2;
-}
-.product-thumb:nth-child(3){
-	position:absolute; top:460px; left:700px; z-index: 3;
-}
-.product-thumb:nth-child(4){
-	position:absolute; top:490px; left:1000px; z-index: 4;
-}
-.product-thumb:nth-child(5){
-	position:absolute; top:700px; left:100px; z-index: 5;
-}
-.product-thumb:nth-child(6){
-	position:absolute; top:730px; left:400px; z-index: 6;
-}
-.product-thumb:nth-child(7){
-	position:absolute; top:760px; left:700px; z-index: 7;
-}
-.product-thumb:nth-child(8){
-	position:absolute; top:790px; left:1000px; z-index: 8;
-}
-.product-thumb:nth-child(9){
-	position:absolute; top:1000px; left:100px; z-index: 9;
-}
-.product-thumb:nth-child(10){
-	position:absolute; top:1030px; left:400px; z-index: 10;
-}
-.product-thumb:nth-child(11){
-	position:absolute; top:1060px; left:700px; z-index: 11;
-}
-.product-thumb:nth-child(12){
-	position:absolute; top:1090px; left:1000px; z-index: 12;
-}
-
 
 //商品詳細
 .p-noreview{
@@ -65,4 +30,8 @@
 }
 .p-index-button{
 	margin: 50px 0 10px 0;
+}
+.heart-icon{
+	font-size: 20px;
+	vertical-align: bottom;
 }
