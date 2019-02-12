@@ -1,5 +1,7 @@
 Rails.application.routes.draw do
 
+  get 'informations/index'
+  get 'informations/show'
   get 'favorites/index'
   mount RailsAdmin::Engine => '/admin', as: 'rails_admin'
   devise_for :users
@@ -17,5 +19,7 @@ Rails.application.routes.draw do
 	  resources :reviews, only: [:edit, :update, :destroy]
     resources :favorites, only: [:index]
   end
+
+  resources :informations, only: [:index, :show]
 
 end

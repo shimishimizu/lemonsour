@@ -1,0 +1,53 @@
+<div class="container">
+	<div class="row">
+		<div class="info-headline">
+			レモンサワーにまつわるetc.
+		</div>
+		<div class="col-xs-offset-1 col-xs-10">
+			<% @informations.each do |i| %>
+			<div class="information-box">
+				<div class="row">
+					<div class="col-xs-3">
+						<!-- Newアイコン -->
+						<% if i.is_new_info %>
+						<p  class="new-info"><%= image_tag 'newlogo.gif', :size =>'50x20' %></p>
+						<% elsif i.is_both_info %>
+						<p  class="new-info"><%= image_tag 'newlogo.gif', :size =>'50x20' %></p>
+						<p  class="update-info"><%= image_tag 'updatelogo.gif', :size =>'80x20' %></p>
+						<% elsif i.is_update_info %>
+						<p  class="update-info"><%= image_tag 'updatelogo.gif', :size =>'80x20' %></p>
+						<% end %>
+
+
+						<%= link_to information_path(i.id) do %>
+						<div class="information-image">
+							<%= attachment_image_tag i.information_images[0], :information_image, format: 'jpeg', fallback: "no_image.jpg", size: "150x150" %>
+						</div>
+					</div>
+					<div class="col-xs-9">
+						<div class="info-date">
+							<% if i.created_at == i.updated_at %>
+							掲載日：<%= i.created_at.strftime('%Y年%m月%d日 %H時%M分') %>
+							<% else %>
+							更新日：<%= i.updated_at.strftime('%Y年%m月%d日 %H時%M分') %>
+							掲載日：<%= i.created_at.strftime('%Y年%m月%d日 %H時%M分') %>
+							<% end %>
+						</div>
+						<div class="information-index-title">
+							<%= i.information_title %>
+						</div>
+						<div class="information-index-content">
+							<%= i.information_content.truncate(120) %>
+						</div>
+					</div>
+				</div>
+
+			</div>
+			<% end %>
+			<% end %>
+		</div>
+		<div class="paginate">
+			<%= paginate @informations %>
+		</div>
+	</div>
+</div>
