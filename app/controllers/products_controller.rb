@@ -10,6 +10,11 @@ class ProductsController < ApplicationController
     @average_star = @product.reviews.average(:review_star)
   end
 
+  def search
+    @products = Product.search(params[:search]).page(params[:page])
+    render :index
+  end
+
   private
   def products_params
   	params.require(:product).permit(:user_id, :product_image, :product_name, :maker, :release_date, :degree, :nutrition,
