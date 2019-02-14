@@ -21,7 +21,11 @@
 				</tr>
 				<tr align="center">
 					<td colspan="2">
-						ここに平均値を入れたいです
+						<!-- レビュー平均値 -->
+						<div class="rated" data-score="<%= @average_star %>"></div>
+						<% if @average_star.present? %>
+						<%= @average_star.round(1) %> / 5.0
+						<% end %>
 					</td>
 				</tr>
 				<tr align="center">

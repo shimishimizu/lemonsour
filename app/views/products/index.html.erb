@@ -22,8 +22,13 @@
 				<label></label>
 				<label class="text-center"><%= p.product_name %></label><br>
 
-				<% if user_signed_in? %>
+				<!-- レビュー平均値 -->
+				<%# result =  %>
+				<%# result = map_box[p.id] %>
+				<div class="rated index-ave" data-score="<%= p.average_reviews(p) %>"></div>
 
+
+				<% if user_signed_in? %>
 				<!-- レビュー -->
 				<span>
 					<% if p.reviewed_by?(current_user) %>
@@ -61,3 +66,13 @@
 		<%= paginate @products%>
 	</div>
 </div>
+
+<script>
+	$('.rated').raty({
+		path: '/assets',
+		readOnly: true,
+		score: function() {
+			return $(this).attr('data-score');
+		}
+	});
+</script>
