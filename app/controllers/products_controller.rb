@@ -6,8 +6,8 @@ class ProductsController < ApplicationController
   def show
   	@product = Product.find(params[:id])
     @review = Review.new
-    #@reviews = Review.where(product_id: @product)
-    @reviews = Kaminari.paginate_array(Review.where(product_id: @product).order('updated_at DESC')).page(params[:page]).per(5)
+    @reviews = Kaminari.paginate_array(@product.reviews.order('updated_at DESC')).page(params[:page]).per(5)
+    @average_star = @product.reviews.average(:review_star)
   end
 
   private
