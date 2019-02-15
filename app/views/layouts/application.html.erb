@@ -38,8 +38,8 @@
 
               <% else %>
               <li><%= link_to "TOP", root_path %></li>
-              <li><%= link_to "LOGIN", user_session_path %></li>
-              <li><%= link_to "SIGNUP",  new_user_registration_path %></li>
+              <li><%= link_to user_session_path do %><i class="fas fa-sign-in-alt"></i> ログイン<% end %></li>
+              <li><%= link_to new_user_registration_path do %><i class="fas fa-user-plus"></i> 新規登録<% end %></li>
               <% end %>
 
             </ul>
