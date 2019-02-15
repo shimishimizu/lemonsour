@@ -21,7 +21,9 @@
 				</tr>
 			</table>
 			<%= link_to "戻る", user_path(@user.id), class: "btn btn-default" %>
-			<%= user.submit "保存", class: "btn btn-info" %>
+			<button type="submit" class="btn btn-info">
+				<i class="fas fa-check"></i> 保存
+			</button>
 			<% end %>
 		</div>
 		<div class="col-xs-8">

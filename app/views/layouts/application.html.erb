@@ -1,60 +1,80 @@
 <!DOCTYPE html>
 <html>
-  <head>
-    <title>Lemonsour</title>
-    <%= csrf_meta_tags %>
-    <%= csp_meta_tag %>
-    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.0.13/css/all.css" >
-    <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track': 'reload' %>
-    <%= javascript_include_tag 'application', 'data-turbolinks-track': 'reload' %>
-  </head>
+<head>
+  <title>Lemonsour</title>
+  <%= csrf_meta_tags %>
+  <%= csp_meta_tag %>
+  <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.0.13/css/all.css" >
+  <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track': 'reload' %>
+  <%= javascript_include_tag 'application', 'data-turbolinks-track': 'reload' %>
+</head>
 
-  <body>
-    <header>
-      <nav class="navbar navbar-default navbar-fixed-top">
-        <div class="container-fluid">
-          <!-- Brand and toggle get grouped for better mobile display -->
-          <div class="navbar-header">
-            <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1" aria-expanded="false">
-              <span class="sr-only">Toggle navigation</span>
-              <span class="icon-bar"></span>
-              <span class="icon-bar"></span>
-              <span class="icon-bar"></span>
-            </button>
-            <a class="navbar-brand" href="#">ロゴが入ります</a>
-          </div>
+<body>
+  <header>
+    <nav class="navbar navbar-default navbar-fixed-top">
+      <div class="container-fluid">
+        <!-- Brand and toggle get grouped for better mobile display -->
+        <div class="navbar-header">
+          <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1" aria-expanded="false">
+            <span class="sr-only">Toggle navigation</span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+          </button>
+          <a class="navbar-brand" href="#">ロゴが入ります</a>
+        </div>
 
-          <!-- Collect the nav links, forms, and other content for toggling -->
-          <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
-            <ul class="nav navbar-nav">
+        <!-- Collect the nav links, forms, and other content for toggling -->
+        <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+          <ul class="nav navbar-nav">
 
-              <% if user_signed_in? %>
-              <li><%= link_to "TOP", root_path %></li>
-              <li><%= link_to "MYPAGE", user_path(current_user) %></li>
-              <li><%= link_to "INFORMATION", informations_path %></li>
-              <li><a href="#">REQUEST</a></li>
-              <li><%= link_to "LOGOUT", destroy_user_session_path, method: :delete %></li>
-              <li>ようこそ　<%= current_user.name %> さん</li>
+            <% if user_signed_in? %>
+            <li class="<%= 'active' if controller.controller_name == 'products' %>">
+              <%= link_to root_path do %>
+              <i class="fas fa-home"></i> ホーム<% end %>
+            </li>
+            <li class="<%= 'active' if controller.controller_name == 'users' %>">
+              <%= link_to user_path(current_user) do %>
+              <i class="fas fa-user"></i> MYページ<% end %>
+            </li>
+            <li class="<%= 'active' if controller.controller_name == 'informations' %>">
+              <%= link_to informations_path do %>
+              <i class="far fa-newspaper"></i> 情報<% end %>
+            </li>
+            <li>
+              <a href="#"><i class="fas fa-envelope"></i> REQUEST</a>
+            </li>
+            <li>
+              <%= link_to destroy_user_session_path, method: :delete do %>
+              <i class="fas fa-sign-out-alt"></i> ログアウト<% end %>
+            </li>
+            <p class="navbar-text">ようこそ　<%= current_user.name %> さん</p>
 
-              <% else %>
-              <li><%= link_to "TOP", root_path %></li>
-              <li><%= link_to "LOGIN", user_session_path %></li>
-              <li><%= link_to "SIGNUP",  new_user_registration_path %></li>
-              <% end %>
+            <% else %>
+            <li  class="<%= 'active' if controller.controller_name == 'products' %>">
+              <%= link_to root_path do %>
+              <i class="fas fa-home"></i> ホーム<% end %>
+            </li>
+            <li class="<%= 'active' if controller.controller_name == 'sessions' %>">
+              <%= link_to user_session_path do %><i class="fas fa-sign-in-alt"></i> ログイン<% end %>
+            </li>
+            <li class="<%= 'active' if controller.controller_name == 'registrations' %>">
+              <%= link_to new_user_registration_path do %><i class="fas fa-user-plus"></i> 新規登録<% end %>
+            </li>
+            <% end %>
 
-            </ul>
-            <div class="navbar-form navbar-right">
-              <div class="form-group">
-                <%= form_tag(search_products_path, :method => 'get', :multipart => true) do %>
-                  <%= text_field_tag :search, params[:search], class: 'form-control', placeholder: "商品名・メーカー名" %>
-                  <button type="submit" class="btn btn-default">
-                     <i class="fas fa-search"></i>
-                  </button>
-                  <%#= submit_tag '検索', :name => nil, class: 'btn btn-default' %>
-                <% end %>
-              </div>
-            </div>
           </ul>
+          <div class="navbar-form navbar-right">
+            <div class="form-group">
+              <%= form_tag(search_products_path, :method => 'get', :multipart => true) do %>
+              <%= text_field_tag :search, params[:search], class: 'form-control', placeholder: "商品名・メーカー名" %>
+              <button type="submit" class="btn btn-default">
+                <i class="fas fa-search"></i>
+              </button>
+              <%#= submit_tag '検索', :name => nil, class: 'btn btn-default' %>
+              <% end %>
+            </div>
+          </div>
         </div><!-- /.navbar-collapse -->
       </div><!-- /.container-fluid -->
     </nav>
@@ -67,5 +87,5 @@
   <footer class="footer">
     <p class="footer-text">© 2019 Copyright Text</p>
   </footer>
-  </body>
+</body>
 </html>
