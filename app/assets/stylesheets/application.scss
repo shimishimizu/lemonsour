@@ -22,7 +22,7 @@
 	height: 650px;
 	background-image: url("lemonwater2.jpg");
 	background-size: cover;
-	color: yellow;
+	color: #D1E829;
 }
 .signup-header{
 	padding: 20px 0;
@@ -47,7 +47,7 @@
 	height: 650px;
 	background-image: url("lemonwater.jpg");
 	background-size: cover;
-	color: yellow;
+	color: #D1E829;
 }
 .login-header{
 	padding: 20px 0;
@@ -79,4 +79,8 @@ footer{
 /* ページャー */
 .paginate{
 	text-align: center;
+}
+/*画面背景*/
+body{
+	background-color: #DDDED3;
 }

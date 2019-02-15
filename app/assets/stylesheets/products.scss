@@ -16,7 +16,11 @@
 	padding: 20px;
 	margin: 20px;
 	float: left;
-	box-shadow: 10px 10px 10px rgba(0,0,0,0.1);
+	border-radius: 5% 5% 5% 5%;
+	background-color: white;
+	-webkit-box-shadow:0 5px 5px -5px #000;
+    -moz-box-shadow:0 5px 5px -5px #000;
+    box-shadow:0 5px 5px -5px #000;
 }
 
 //商品詳細
