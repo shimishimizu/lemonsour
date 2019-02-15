@@ -34,7 +34,8 @@
 				</tr>
 			</table>
 			<div class="user-edit-buttom">
-				<%= link_to "編集", edit_user_path(@user.id), class: "btn btn-success" %>
+				<%= link_to edit_user_path(@user.id), class: "btn btn-success" do %>
+				<i class="fas fa-user-cog"></i> 編集<% end %>
 			</div>
 		</div>
 
@@ -50,7 +51,7 @@
 				<h3 class="review-counter">レビュー全 <%= @reviews.total_count %> 件</h3><br>
 				<% @reviews.each do |review| %>
 
-				<div class="col-xs-12 review-box">
+				<div class="col-xs-12 user-review-box">
 
 					<!-- Newアイコン -->
 					<% if review.is_new %>
@@ -69,8 +70,10 @@
 
 					<div class="rated" data-score="<%= review.review_star %>"></div>
 					<div class="user-buttom">
-						<%= link_to "編集", edit_user_review_path(@user.id,review), class: "btn btn-success" %>
-						<%= link_to "削除", user_review_path(@user.id,review), method: :delete, "data-confirm" => "本当に削除しますか？", class: "btn btn-danger" %>
+						<%= link_to edit_user_review_path(@user.id,review), class: "btn btn-success" do %>
+						<i class="fas fa-cog"></i> 編集<% end %>
+						<%= link_to user_review_path(@user.id,review), method: :delete, "data-confirm" => "本当に削除しますか？", class: "btn btn-danger" do %>
+						<i class="fas fa-trash-alt"></i> 削除<% end %>
 					</div>
 					<div class="user-date">
 						<% if review.created_at == review.updated_at %>

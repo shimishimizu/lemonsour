@@ -3,7 +3,7 @@
 		<div class="col-xs-4">
 			<table  class="table product-info">
 				<tr align="center">
-					<td colspan="2"><%= attachment_image_tag @product, :product_image, format: 'jpeg', fallback: "no_image.jpg", size: "150x150" %>
+					<td colspan="2"><%= attachment_image_tag @product, :product_image, format: 'jpeg', fallback: "no_image.jpg", size: "300x300" %>
 						<!-- いいね -->
 						<% if user_signed_in? %>
 							<% if @product.favorited_by?(current_user) %>
@@ -54,7 +54,7 @@
 			</table>
 
 			<% if user_signed_in? %>
-			<h3 align="center">レビュー投稿</h3>
+			<h3 class="review-post-header" align="center">新規レビュー投稿</h3>
 			<%= form_for [@product,@review] do |review| %>
 			<label>評価</label>
 			<%= review.hidden_field :review_star, id: :rating %>
@@ -62,7 +62,11 @@
 
 			<label>レビュー内容</label>
 			<%= review.text_area :opinion, :size => "50x10" %><br>
-			<%= review.submit "投稿する" %>
+			<div class="review-btn">
+			<button type="submit" class="btn btn-info">
+				<i class="fas fa-plus"></i> 投稿
+			</button>
+		</div>
 			<% end %>
 			<% end %>
 		</div>
@@ -79,7 +83,7 @@
 				<h3 class="p-review-counter">レビュー全 <%= @reviews.total_count %> 件</h3><br>
 				<% @reviews.each do |review| %>
 
-				<div class="col-xs-12">
+				<div class="col-xs-12 review-box">
 
 					<!-- Newアイコン -->
 					<% if review.is_new %>
