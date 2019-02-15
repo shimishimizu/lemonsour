@@ -1,6 +1,10 @@
 class ProductsController < ApplicationController
   def index
-  	@products = Product.page(params[:page]).order(params[:sort])
+  	@products = Product.page(params[:page]).order(params[:sort]).includes(:reviews).order("reviews.review_star DESC")
+    # Product.joins(:reviews).group(:product_id).order('count(review_star) desc')
+    puts "==========="
+    puts @products
+    puts "==========="
   end
 
   def show
