@@ -13,6 +13,11 @@
 		<% end %>
 	</div>
 
+	<!-- ソート機能 -->
+	<%= link_to "商品名昇順", sort: "product_name" %><br>
+	<%= link_to "商品名降順", sort: "product_name desc" %><br>
+	<%#= link_to "評価昇順", sort: "review_star" %>
+
 	<div class="row">
 		<% @products.each do |p| %>
 		<div class="product-thumb">
