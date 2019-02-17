@@ -22,9 +22,9 @@
 				<tr align="center">
 					<td colspan="2">
 						<!-- レビュー平均値 -->
-						<div class="rated" data-score="<%= @average_star %>"></div>
-						<% if @average_star.present? %>
-						<%= @average_star.round(1) %> / 5.0
+						<div class="rated" data-score="<%= @product.average_star %>"></div>
+						<% if @product.average_star.present? %>
+						<%= @product.average_star.round(1) %> / 5.0
 						<% end %>
 					</td>
 				</tr>

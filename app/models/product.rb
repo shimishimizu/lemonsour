@@ -15,8 +15,4 @@ class Product < ApplicationRecord
     	reviews.where(user_id: user.id).exists?
     end
 
-    def average_reviews (product)
-    	@average_reviews = reviews.average(:review_star)
-	end
-
 end
