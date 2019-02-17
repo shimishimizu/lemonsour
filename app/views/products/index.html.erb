@@ -14,9 +14,26 @@
 	</div>
 
 	<!-- ソート機能 -->
-	<%= link_to "商品名昇順", sort: "product_name" %><br>
-	<%= link_to "商品名降順", sort: "product_name desc" %><br>
-	<%#= link_to "評価昇順", sort: "review_star" %>
+	<div class="btn-group">
+		<button type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown" aria-expanded="false">
+			商品名
+			<span class="caret"></span>
+		</button>
+		<ul class="dropdown-menu" role="menu">
+			<li role="presentation"><%= link_to "商品名昇順", sort: "product_name" %></li>
+			<li role="presentation"><%= link_to "商品名降順", sort: "product_name desc" %></li>
+		</ul>
+	</div>
+	<div class="btn-group">
+		<button type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown" aria-expanded="false">
+			評価順
+			<span class="caret"></span>
+		</button>
+		<ul class="dropdown-menu" role="menu">
+			<li role="presentation"><%= link_to "評価低い順", sort: "average_star" %></li>
+			<li role="presentation"><%= link_to "評価高い順", sort: "average_star desc" %></li>
+		</ul>
+	</div>
 
 	<div class="row">
 		<% @products.each do |p| %>
@@ -28,9 +45,7 @@
 				<label class="text-center"><%= p.product_name %></label><br>
 
 				<!-- レビュー平均値 -->
-				<%# result =  %>
-				<%# result = map_box[p.id] %>
-				<div class="rated index-ave" data-score="<%= p.average_reviews(p) %>"></div>
+				<div class="rated index-ave" data-score="<%= p.average_star %>"></div>
 
 
 				<% if user_signed_in? %>
