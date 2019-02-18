@@ -1,32 +1,37 @@
 <div class="container">
 	<div class="row">
-		<div class="col-xs-4">
+		<div class="col-xs-6">
 
-			<table  class="table">
-				<tr align="center">
-					<%= form_for @user do |user| %>
-					<td colspan="2"><%= user.attachment_field :profile_image %></td>
-				</tr>
-				<tr>
-					<td>ユーザ名</td>
-					<td><%= user.text_field :name %></td>
-				</tr>
-				<tr>
-					<td>email</td>
-					<td><%= user.email_field :email %></td>
-				</tr>
-				<tr>
-					<td>自己紹介</td>
-					<td><%= user.text_area :introduction %></td>
-				</tr>
-			</table>
-			<%= link_to "戻る", user_path(@user.id), class: "btn btn-default" %>
-			<button type="submit" class="btn btn-info">
-				<i class="fas fa-check"></i> 保存
-			</button>
+			<div  class=" edit-user">
+				<%= form_for @user do |user| %>
+
+				<div class="form-group">
+					<%= user.attachment_field :profile_image %>
+				</div>
+				<div class="form-group">
+					ユーザ名
+					<%= user.text_field :name, class: "form-control" %>
+				</div>
+				<div class="form-group">
+					email
+					<%= user.email_field :email, class: "form-control" %>
+				</div>
+				<div class="form-group">
+					自己紹介
+					<%= user.text_area :introduction, size:"50x10",class: "form-control" %>
+				</div>
+			</div>
+
+			<div class="user-edit-btn">
+				<%= link_to "戻る", user_path(@user.id), class: "btn btn-default" %>
+				<button type="submit" class="btn btn-info">
+					<i class="fas fa-check"></i> 保存
+				</button>
+			</div>
 			<% end %>
 		</div>
-		<div class="col-xs-8">
+
+		<div class="col-xs-6 user-delete-btn">
 			<%= link_to "退会", user_registration_path, method: :delete, "data-confirm" => "本当に削除しますか？", class: "btn btn-danger" %>
 		</div>
 	</div>
