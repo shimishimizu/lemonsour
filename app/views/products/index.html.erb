@@ -5,8 +5,11 @@
 			<%= link_to image_tag("sitelogo.png", alt: "サイトロゴ"), root_path %>
 			<h1 class="top-headline2">へ！！</h1>
 			<h2>一杯目から飲みたくなるレモンサワーを紹介中</h2>
-			登録商品数<%= @products.total_count %>杯
-			レビュー登録数<%= @reviews.count %>件
+			<div class="reviews-counter-box">
+				<p class="reviews-counter1">レビュー総数</p>
+				<p class="reviews-counter2"><%= @reviews.count %></p>
+				<p class="reviews-counter3">件</p>
+			</div>
 		</div>
 
 		<!-- 管理者ボタン -->
