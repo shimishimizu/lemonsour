@@ -62,22 +62,22 @@
 
 			<% if user_signed_in? %>
 			<div id="new-review">
-			<h3 class="review-post-header" align="center">新規レビュー投稿</h3>
-			<%= form_for [@product,@review] do |review| %>
-			<label>評価</label>
-			<%= review.hidden_field :review_star, id: :rating %>
-			<div id='star-rating'></div><br>
+				<h3 class="review-post-header" align="center">新規レビュー投稿</h3>
+				<%= form_for [@product,@review] do |review| %>
+				<label>評価</label>
+				<%= review.hidden_field :review_star, id: :rating %>
+				<div id='star-rating'></div><br>
 
-			<label>レビュー内容</label>
-			<%= review.text_area :opinion, :size => "50x10" %><br>
-			<div class="review-btn">
-				<button type="submit" class="btn btn-info">
-					<i class="fas fa-plus"></i> 投稿
-				</button>
+				<label>レビュー内容</label>
+				<%= review.text_area :opinion, :size => "50x10" %><br>
+				<div class="review-btn">
+					<button type="submit" class="btn btn-info">
+						<i class="fas fa-plus"></i> 投稿
+					</button>
+				</div>
+				<% end %>
 			</div>
 			<% end %>
-			<% end %>
-		</div>
 		</div>
 
 		<div class="col-xs-7 col-xs-offset-1">
@@ -90,7 +90,9 @@
 				</div>
 				<% else %>
 				<h3 class="p-review-counter">レビュー全 <%= @reviews.total_count %> 件</h3><br>
+				<% if user_signed_in? %>
 				<%= link_to("レビューを書く", { anchor: "new-review" }, class: "btn btn-warning btn-lg") %>
+				<% end %>
 				<% @reviews.each do |review| %>
 
 				<div class="col-xs-12 review-box">

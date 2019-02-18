@@ -1,8 +1,15 @@
 <div class="container index-container">
 	<div class="row">
 		<div class="text-center">
-			<h1>ようこそ　レモンサワーが飲みたい　へ！！</h1>
-			<h2>ここでは美味しいレモンサワーを紹介していきます</h2>
+			<h1 class="top-headline1">ようこそ</h1>
+			<%= link_to image_tag("sitelogo.png", alt: "サイトロゴ"), root_path %>
+			<h1 class="top-headline2">へ！！</h1>
+			<h2>一杯目から飲みたくなるレモンサワーを紹介中</h2>
+			<div class="reviews-counter-box">
+				<p class="reviews-counter1">レビュー総数</p>
+				<p class="reviews-counter2"><%= @reviews.count %></p>
+				<p class="reviews-counter3">件</p>
+			</div>
 		</div>
 
 		<!-- 管理者ボタン -->

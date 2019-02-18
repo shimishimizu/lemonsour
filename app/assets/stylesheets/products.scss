@@ -4,6 +4,41 @@
 
 
 //商品一覧
+.top-headline1{
+	position: absolute;
+	left: 250px;
+	top: 195px;
+	font-weight: 700;
+}
+.top-headline2{
+	position: absolute;
+	left: 1050px;
+	top: 195px;
+	font-weight: 700;
+}
+.reviews-counter-box{
+	position: absolute;
+	top: 280px;
+	right: 170px;
+	width: 150px;
+  	height: 150px;
+	border-radius: 50%;
+	text-align: center;
+	border: 4px solid orange;
+}
+.reviews-counter1{
+	padding-top: 16px;
+	font-size: 16px;
+}
+.reviews-counter2{
+	font-size: 45px;
+	font-style: italic;
+	font-weight: 700;
+	color: orange;
+}
+.reviews-counter3{
+	font-size: 16px;
+}
 .admin-btn{
 	margin: 50px;
 }
