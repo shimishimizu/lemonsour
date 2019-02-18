@@ -17,7 +17,7 @@
 			<!-- information画像 -->
 			<% if @information.information_images.present? %>
 			<% @information.information_images.each do |image| %>
-			<%= link_to(image_tag(attachment_url(image, :information_image, :fill, 200, 200, format: 'jpg')), attachment_url(image, :information_image, :fit, 500, 500, format: 'jpg'), data: { lightbox: "example-set" }) %>
+			<%= link_to(image_tag(attachment_url(image, :information_image, :fill, 200, 200, format: 'jpg')), attachment_url(image, :information_image, :fit, 500, 500, format: 'jpg'), data: { lightbox: "information-set" }) %>
 			<% end %>
 			<% else %>
 			<%= image_tag 'no_image.jpg', size: '200x200' %>
