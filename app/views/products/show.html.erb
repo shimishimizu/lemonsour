@@ -6,9 +6,9 @@
 					<td colspan="2">
 
 						<% if @product.product_image.present? %>
-						<%= link_to(image_tag(attachment_url(@product, :product_image, :fill, 200, 200, format: 'jpg')), attachment_url(@product, :product_image, :fit, 500, 500, format: 'jpg'), data: { lightbox: "product-set" }) %>
+						<%= link_to(image_tag(attachment_url(@product, :product_image, :fill, 250, 250, format: 'jpg')), attachment_url(@product, :product_image, :fit, 500, 500, format: 'jpg'), data: { lightbox: "product-set" }) %>
 						<% else %>
-						<%= image_tag 'no_image.jpg', size: '200x200' %>
+						<%= image_tag 'no_image.jpg', size: '250x250' %>
 						<% end %>
 
 						<!-- いいね -->
@@ -61,6 +61,7 @@
 			</table>
 
 			<% if user_signed_in? %>
+			<div id="new-review">
 			<h3 class="review-post-header" align="center">新規レビュー投稿</h3>
 			<%= form_for [@product,@review] do |review| %>
 			<label>評価</label>
@@ -77,6 +78,7 @@
 			<% end %>
 			<% end %>
 		</div>
+		</div>
 
 		<div class="col-xs-7 col-xs-offset-1">
 
@@ -88,6 +90,7 @@
 				</div>
 				<% else %>
 				<h3 class="p-review-counter">レビュー全 <%= @reviews.total_count %> 件</h3><br>
+				<%= link_to("レビューを書く", { anchor: "new-review" }, class: "btn btn-warning btn-lg") %>
 				<% @reviews.each do |review| %>
 
 				<div class="col-xs-12 review-box">
