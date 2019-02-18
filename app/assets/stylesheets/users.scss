@@ -34,21 +34,9 @@
 .user-review-box{
 	background-color: white;
 	margin: 10px;
-	-webkit-box-shadow:0 5px 5px -5px #000;
-    -moz-box-shadow:0 5px 5px -5px #000;
     box-shadow:0 5px 5px -5px #000;
  }
-.user-review-box:before {
-    content:"";
-    position:absolute;
-    top:0;
-    right:0;
-    border-width:0 30px 30px 0; /* This trick side-steps a webkit bug */
-    border-style:solid;
-    border-color:#DDDED3 #DDDED3 #658E15 #658E15; /* A bit more verbose to work with .rounded too */
-    background:#658E15; /* For Opera when also applying a border-radius */
-    display:block; width:0; /* Only for Firefox 3.0 damage limitation */
- }
+
 
 /*いいねユーザー一覧*/
  .favorite-user-box{
@@ -62,9 +50,8 @@
 
 /*ユーザー編集*/
 .edit-user{
-	background-color: white;
+	background-color: transparent;
 	border-radius: 3% 3% 3% 3%;
-	padding: 20px;
 	margin-top: 50px;
 }
 .user-edit-btn{
@@ -73,5 +60,5 @@
 }
 .user-delete-btn{
 	text-align: right;
-	margin-top: 530px;
+	margin-top: 480px;
 }
