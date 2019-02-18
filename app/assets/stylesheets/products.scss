@@ -18,8 +18,6 @@
 	float: left;
 	border-radius: 5% 5% 5% 5%;
 	background-color: white;
-	-webkit-box-shadow:0 5px 5px -5px #000;
-    -moz-box-shadow:0 5px 5px -5px #000;
     box-shadow:0 5px 5px -5px #000;
 }
 
@@ -49,20 +47,7 @@
 .review-box{
 	background-color: white;
 	margin: 10px;
-	-webkit-box-shadow:0 5px 5px -5px #000;
-    -moz-box-shadow:0 5px 5px -5px #000;
     box-shadow:0 5px 5px -5px #000;
- }
-.review-box:before {
-    content:"";
-    position:absolute;
-    top:0;
-    right:0;
-    border-width:0 30px 30px 0; /* This trick side-steps a webkit bug */
-    border-style:solid;
-    border-color:#DDDED3 #DDDED3 #ACA67B #ACA67B; /* A bit more verbose to work with .rounded too */
-    background:#ACA67B; /* For Opera when also applying a border-radius */
-    display:block; width:0; /* Only for Firefox 3.0 damage limitation */
  }
  .review-btn{
  text-align: right;
