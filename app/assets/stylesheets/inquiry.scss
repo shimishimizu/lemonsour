@@ -1,0 +1,38 @@
+// Place all the styles related to the inquiry controller here.
+// They will automatically be included in application.css.
+// You can use Sass (SCSS) here: http://sass-lang.com/
+
+/*入力画面*/
+.inquiry-confirm-btn{
+	text-align: right;
+	padding-bottom: 20px;
+}
+.inquiry-sub-header{
+margin-left: 30px;
+	//text-align: center;
+}
+
+/*確認画面*/
+.inquiry-post-btn{
+	text-align: right;
+	padding: 50px 0 20px 0;
+}
+.inquiry-content{
+	margin-top: 50px;
+}
+
+/*送信完了画面*/
+.thanks-text{
+	text-align: center;
+	font-size: 20px;
+	margin: 90px 0 50px 0;
+}
+.inquiry-index-button{
+	text-align: right;
+	padding-bottom: 20px;
+}
+
+/*共通レイアウト*/
+.inquiry-header{
+	margin-left: 30px;
+}
