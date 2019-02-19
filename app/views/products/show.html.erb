@@ -81,7 +81,10 @@
 		</div>
 
 		<div class="col-xs-7 col-xs-offset-1">
-
+			<!-- ページ内リンク -->
+			<% if user_signed_in? %>
+			<%= link_to("レビューを書く", { anchor: "new-review" }, class: "btn btn-warning btn-lg") %>
+			<% end %>
 			<div class="row">
 				<% if @reviews.empty? %>
 				<div class="p-noreview">
@@ -90,9 +93,6 @@
 				</div>
 				<% else %>
 				<h3 class="p-review-counter">レビュー全 <%= @reviews.total_count %> 件</h3><br>
-				<% if user_signed_in? %>
-				<%= link_to("レビューを書く", { anchor: "new-review" }, class: "btn btn-warning btn-lg") %>
-				<% end %>
 				<% @reviews.each do |review| %>
 
 				<div class="col-xs-12 review-box">
