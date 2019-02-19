@@ -27,21 +27,42 @@
 			<span class="caret"></span>
 		</button>
 		<ul class="dropdown-menu" role="menu">
-			<li role="presentation"><%= link_to "商品名昇順", sort: "product_name" %></li>
-			<li role="presentation"><%= link_to "商品名降順", sort: "product_name desc" %></li>
+			<li role="presentation"><%= link_to "昇順", sort: "product_name" %></li>
+			<li role="presentation"><%= link_to "降順", sort: "product_name desc" %></li>
 		</ul>
 	</div>
 	<div class="btn-group sort-btn">
 		<button type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown" aria-expanded="false">
-			評価順
+			評価
 			<span class="caret"></span>
 		</button>
 		<ul class="dropdown-menu" role="menu">
-			<li role="presentation"><%= link_to "評価低い順", sort: "average_star" %></li>
-			<li role="presentation"><%= link_to "評価高い順", sort: "average_star desc" %></li>
+			<li role="presentation"><%= link_to "高い順", sort: "average_star desc" %></li>
+			<li role="presentation"><%= link_to "低い順", sort: "average_star" %></li>
+		</ul>
+	</div>
+	<div class="btn-group sort-btn">
+		<button type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown" aria-expanded="false">
+			レビュー数
+			<span class="caret"></span>
+		</button>
+		<ul class="dropdown-menu" role="menu">
+			<li role="presentation"><%= link_to "多い順", sort: "count(reviews.id) DESC" %></li>
+			<li role="presentation"><%= link_to "少ない順", sort: "count(reviews.id)" %></li>
+		</ul>
+	</div>
+	<div class="btn-group sort-btn">
+		<button type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown" aria-expanded="false">
+			お気に入り数
+			<span class="caret"></span>
+		</button>
+		<ul class="dropdown-menu" role="menu">
+			<li role="presentation"><%= link_to "多い順", sort: "count(favorites.id) DESC" %></li>
+			<li role="presentation"><%= link_to "少ない順", sort: "count(favorites.id)" %></li>
 		</ul>
 	</div>
 
+	<!-- 商品一覧 -->
 	<div class="row">
 		<% @products.each do |p| %>
 		<div class="product-thumb">
