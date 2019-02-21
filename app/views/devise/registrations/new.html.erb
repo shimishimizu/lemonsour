@@ -1,27 +1,27 @@
 <div class="container signup-container">
   <div class="row">
-    <div class="col-md-offset-8 form-fields">
+    <div class="col-md-offset-8 col-md-3 form-fields">
       <h2 class="signup-header">新規会員登録</h2>
 
       <%= form_for(resource, as: resource_name, url: registration_path(resource_name)) do |f| %>
-      <%= devise_error_messages! %>
+      <%#= devise_error_messages! %>
 
       <div class="field">
-        <%= f.label :ユーザ名 %><br />
+        <%= f.label :name %>
         <div class="form-text">
           <%= f.text_field :name, autofocus: true, autocomplete: "name" %>
         </div>
       </div>
 
       <div class="field">
-        <%= f.label :eメール %><br />
+        <%= f.label :email %>
         <div class="form-text">
           <%= f.email_field :email, autofocus: true, autocomplete: "email" %>
         </div>
       </div>
 
       <div class="field">
-        <%= f.label :パスワード %>
+        <%= f.label :password %>
         <% if @minimum_password_length %>
         （<%= @minimum_password_length %> 文字以上）
         <% end %><br />
@@ -31,7 +31,7 @@
       </div>
 
       <div class="field">
-        <%= f.label :パスワード（確認用） %><br />
+        <%= f.label :password_confirmation %><br />
         <div class="form-text">
           <%= f.password_field :password_confirmation, autocomplete: "new-password" %>
         </div>
