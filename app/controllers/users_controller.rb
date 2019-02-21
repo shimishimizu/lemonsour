@@ -1,4 +1,6 @@
 class UsersController < ApplicationController
+   before_action :authenticate_user!
+
   def index
     @product = Product.find(params[:product_id])
     @favorites = Favorite.where(product_id: @product)
