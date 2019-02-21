@@ -2,16 +2,19 @@ class ReviewsController < ApplicationController
 	 before_action :authenticate_user!
 
 	def create
-        product = Product.find(params[:product_id])
-		review = current_user.reviews.new(review_params)
-		review.product_id = product.id
-		review.save!
-
-		reviews = product.reviews.pluck(:review_star)
-		product.average_star = reviews.sum.to_f / reviews.count
-		product.save!
-
-		redirect_to product_path(product.id)
+        @product = Product.find(params[:product_id])
+		@review = current_user.reviews.new(review_params)
+		@review.product_id = @product.id
+		    @reviews = Kaminari.paginate_array(@product.reviews.order('updated_at DESC')).page(params[:page]).per(5)
+		if @review.save
+			@reviews = @product.reviews.pluck(:review_star)
+			@product.average_star = reviews.sum.to_f / reviews.count
+			if @product.save
+			redirect_to product_path(@product.id)
+			end
+		else
+			render 'products/show'
+		end
 	end
 
 	def edit

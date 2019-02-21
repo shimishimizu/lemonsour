@@ -8,7 +8,6 @@ class ProductsController < ApplicationController
   	@product = Product.find(params[:id])
     @review = Review.new
     @reviews = Kaminari.paginate_array(@product.reviews.order('updated_at DESC')).page(params[:page]).per(5)
-    @average_review_star = @product.reviews.average(:review_star)
   end
 
   def search

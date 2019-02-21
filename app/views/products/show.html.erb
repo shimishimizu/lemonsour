@@ -1,6 +1,36 @@
 <div class="container">
 	<div class="row">
 		<div class="col-xs-4">
+			<% if @review.errors.any? %>
+			<div id="new-review">
+				<h3 class="review-post-header" align="center">新規レビュー投稿</h3>
+				<%= form_for [@product,@review] do |review| %>
+
+					<% if @review.errors.any? %>
+					<div id="error_explanation">
+						<%= @review.errors.count %>件のエラーが発生しました
+						 <ul>
+						<% @review.errors.full_messages.each do |message| %>
+							<li><%= message %></li>
+						<% end %>
+						</ul>
+					</div>
+					<% end %>
+
+				<label>評価</label>
+				<%= review.hidden_field :review_star, id: :rating %>
+				<div id='star-rating'></div><br>
+
+				<label>レビュー内容</label>
+				<%= review.text_area :opinion, :size => "50x10" %><br>
+				<div class="review-btn">
+					<button type="submit" class="btn btn-info">
+						<i class="fas fa-plus"></i> 投稿
+					</button>
+				</div>
+				<% end %>
+			</div>
+
 			<table  class="table product-info">
 				<tr align="center">
 					<td style="border:none;" colspan="2">
@@ -14,7 +44,66 @@
 						<!-- いいね -->
 						<% if user_signed_in? %>
 						<% if @product.favorited_by?(current_user) %>
-						<%= link_to product_favorite_path(@product), method: :delete do %>
+						<%= link_to product_favorites_path(@product), method: :delete do %>
+						<i class="heart-icon fa fa-heart" aria-hidden="true" style="color: red;"></i><br>
+						<% end %>
+
+						<% else %>
+						<%= link_to product_favorites_path(@product), method: :post do %>
+						<i class="heart-icon far fa-heart" aria-hidden="true"></i><br>
+						<% end %>
+						<% end %>
+						<% end %>
+					</td>
+				</tr>
+				<tr align="center">
+					<td colspan="2">
+						<!-- レビュー平均値 -->
+						<div class="rated" data-score="<%= @product.average_star %>"></div>
+						<% if @product.average_star.present? %>
+						<%= @product.average_star.round(1) %> / 5.0
+						<% end %>
+					</td>
+				</tr>
+				<tr align="center">
+					<td colspan="2">
+						<%= link_to product_users_path(@product.id) do %>
+						<%= @product.favorites.count %> 人がお気に入り
+						<% end %>
+					</td>
+				</tr>
+				<tr>
+					<td>商品名</td>
+					<td><%= @product.product_name %></td>
+				</tr>
+				<tr>
+					<td>メーカー</td>
+					<td><%= @product.maker %></td>
+				</tr>
+				<tr>
+					<td>アルコール度数</td>
+					<td><%= @product.degree %></td>
+				</tr>
+				<tr>
+					<td>栄養成分表示</td>
+					<td><%= @product.nutrition %></td>
+				</tr>
+			</table>
+			<% else %>
+			<table  class="table product-info">
+				<tr align="center">
+					<td style="border:none;" colspan="2">
+
+						<% if @product.product_image.present? %>
+						<%= link_to(image_tag(attachment_url(@product, :product_image, :fill, 250, 250, format: 'jpg')), attachment_url(@product, :product_image, :fit, 500, 500, format: 'jpg'), data: { lightbox: "product-set" }) %>
+						<% else %>
+						<%= image_tag 'no_image.jpg', size: '250x250' %>
+						<% end %>
+
+						<!-- いいね -->
+						<% if user_signed_in? %>
+						<% if @product.favorited_by?(current_user) %>
+						<%= link_to product_favorites_path(@product), method: :delete do %>
 						<i class="heart-icon fa fa-heart" aria-hidden="true" style="color: red;"></i><br>
 						<% end %>
 
@@ -64,6 +153,7 @@
 			<div id="new-review">
 				<h3 class="review-post-header" align="center">新規レビュー投稿</h3>
 				<%= form_for [@product,@review] do |review| %>
+
 				<label>評価</label>
 				<%= review.hidden_field :review_star, id: :rating %>
 				<div id='star-rating'></div><br>
@@ -77,6 +167,7 @@
 				</div>
 				<% end %>
 			</div>
+			<% end %>
 			<% end %>
 		</div>
 
