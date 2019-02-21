@@ -1,4 +1,6 @@
 class FavoritesController < ApplicationController
+   before_action :authenticate_user!
+
   def index
     @user = User.find(params[:user_id])
     @favorites = Kaminari.paginate_array(Favorite.where(user_id: @user).order('updated_at DESC')).page(params[:page]).per(8)

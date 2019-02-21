@@ -43,6 +43,8 @@
 			<li role="presentation"><%= link_to "低い順", sort: "average_star" %></li>
 		</ul>
 	</div>
+
+	<% if user_signed_in? %>
 	<div class="btn-group sort-btn">
 		<button type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown" aria-expanded="false">
 			レビュー数
@@ -63,6 +65,7 @@
 			<li role="presentation"><%= link_to "少ない順", sort: "count(favorites.id)" %></li>
 		</ul>
 	</div>
+	<% end %>
 
 	<!-- 商品一覧 -->
 	<div class="row">
