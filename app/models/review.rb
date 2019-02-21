@@ -3,4 +3,7 @@ class Review < ApplicationRecord
 
 	belongs_to :product
 
+    validates :review_star, presence: true
+    validates :opinion, length: { maximum: 10 }
+
 end
