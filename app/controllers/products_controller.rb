@@ -13,6 +13,7 @@ class ProductsController < ApplicationController
 
   def search
     @products = Product.search(params[:search]).page(params[:page])
+    @reviews = Review.all
     render :index
   end
 
