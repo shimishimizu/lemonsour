@@ -1,5 +1,6 @@
 class ReviewsController < ApplicationController
 	 before_action :authenticate_user!
+	 before_action :correct_user, only: [:edit, :update]
 
 	def create
         @product = Product.find(params[:product_id])
@@ -61,6 +62,13 @@ class ReviewsController < ApplicationController
 	private
 	def review_params
 		params.require(:review).permit(:user_id, :product_id, :review_star, :opinion)
+	end
+
+	def correct_user
+		review = Review.find(params[:id])
+		if review.user.id != current_user.id
+			redirect_to root_path
+		end
 	end
 
 end
