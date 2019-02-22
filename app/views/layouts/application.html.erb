@@ -70,7 +70,7 @@
           <div class="navbar-form navbar-right">
             <div class="form-group">
               <%= form_tag(search_products_path, :method => 'get', :multipart => true) do %>
-              <%= text_field_tag :search, params[:search], class: 'form-control', placeholder: "商品名・メーカー名" %>
+              <%= text_field_tag :search, params[:search], class: 'form-control', placeholder: "商品名" %>
               <button type="submit" class="btn btn-default">
                 <i class="fas fa-search"></i>
               </button>
