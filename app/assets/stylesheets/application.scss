@@ -16,6 +16,11 @@
  @import "bootstrap-sprockets";
  @import "bootstrap";
 
+/*フォント*/
+body {
+font-family: "ヒラギノ角ゴ Pro W3", "Hiragino Kaku Gothic Pro", "メイリオ", Meiryo, Osaka, "ＭＳ Ｐゴシック", "MS PGothic", sans-serif;
+}
+
 /* 会員登録 */
 .signup-container{
 	width: 100%;
@@ -26,6 +31,7 @@
 }
 .signup-header{
 	padding: 20px 0;
+	font-weight: bold;
 }
 .field{
 	margin: 15px;
@@ -47,10 +53,11 @@
 	height: 720px;
 	background-image: url("login.jpg");
 	background-size: cover;
-	color: #ff9200;
+	color: #e56b00;
 }
 .login-header{
 	padding: 20px 0;
+	font-weight: bold;
 }
 .button2{
 	color: black;
@@ -90,8 +97,6 @@ footer{
 .paginate{
 	text-align: center;
 }
-
-
 
 /*flash*/
 .alert-alert {
