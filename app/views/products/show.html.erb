@@ -6,16 +6,16 @@
 				<h3 class="review-post-header" align="center">新規レビュー投稿</h3>
 				<%= form_for [@product,@review] do |review| %>
 
-					<% if @review.errors.any? %>
+				<% if @review.errors.any? %>
 				<div class="alert alert-danger" role="alert">
-						<strong>入力内容にエラーがあります</strong>
-						 <ul>
+					<strong>入力内容にエラーがあります</strong>
+					<ul>
 						<% @review.errors.full_messages.each do |message| %>
-							<li><%= message %></li>
+						<li><%= message %></li>
 						<% end %>
-						</ul>
-					</div>
-					<% end %>
+					</ul>
+				</div>
+				<% end %>
 
 				<label><%= review.label :review_star %></label>
 				<%= review.hidden_field :review_star, id: :rating %>
@@ -183,7 +183,30 @@
 					<p>この商品のレビューを投稿するとここに表示されます</p>
 				</div>
 				<% else %>
-				<h3 class="p-review-counter">レビュー全 <%= @reviews.total_count %> 件</h3><br>
+				<h3 class="p-review-counter">レビュー全 <%= @reviews.total_count %> 件</h3>
+				<!-- ソート機能 -->
+				<div class="review-sort-btn">
+				<div class="btn-group">
+					<button type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown" aria-expanded="false">
+						評価順
+						<span class="caret"></span>
+					</button>
+					<ul class="dropdown-menu" role="menu">
+						<li role="presentation"><%= link_to "評価高い順", sort: "review_star desc" %></li>
+						<li role="presentation"><%= link_to "評価低い順", sort: "review_star" %></li>
+					</ul>
+				</div>
+				<div class="btn-group">
+					<button type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown" aria-expanded="false">
+						投稿順
+						<span class="caret"></span>
+					</button>
+					<ul class="dropdown-menu" role="menu">
+						<li role="presentation"><%= link_to "新着順", sort: "updated_at desc" %></li>
+						<li role="presentation"><%= link_to "投稿順", sort: "updated_at" %></li>
+					</ul>
+				</div>
+			</div>
 				<% @reviews.each do |review| %>
 
 				<div class="col-xs-12 review-box">
