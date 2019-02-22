@@ -10,7 +10,8 @@ class ReviewsController < ApplicationController
 			@reviews = @product.reviews.pluck(:review_star)
 			@product.average_star = @reviews.sum.to_f / @reviews.count
 			if @product.save
-			redirect_to product_path(@product.id)
+				flash[:notice] = "レビューを投稿しました"
+				redirect_to product_path(@product.id)
 			end
 		else
 			render 'products/show'
@@ -22,28 +23,39 @@ class ReviewsController < ApplicationController
 	end
 
 	def update
-		review = Review.find(params[:id])
-		review.update(review_params)
+		@review = Review.find(params[:id])
+		if @review.update(review_params)
 
-		product = Product.find_by(params[:product_id])
-		reviews = product.reviews.pluck(:review_star)
-		product.average_star = reviews.sum.to_f / reviews.count
-		product.save!
-
-		redirect_to user_path(current_user)
+			product = Product.find_by(params[:product_id])
+			@reviews = product.reviews.pluck(:review_star)
+			product.average_star = @reviews.sum.to_f / @reviews.count
+			if product.save!
+				flash[:notice] = "レビューを編集しました"
+				redirect_to user_path(current_user)
+			end
+		else
+			render :edit
+		end
 	end
 
 	def destroy
 		reviews = Review.find(params[:id])
 		user = User.where(review_id: @reviews)
-		reviews.destroy!
+		if reviews.destroy!
 
-		product = Product.find_by(params[:product_id])
-		reviews = product.reviews.pluck(:review_star)
-		product.average_star = reviews.sum.to_f / reviews.count
-		product.save!
+			@product = Product.find_by(params[:product_id])
+			reviews = @product.reviews.pluck(:review_star)
+			@product.average_star = reviews.sum.to_f / reviews.count
 
-		redirect_to user_path(current_user)
+			@reveiw = Review.new
+			@reviews = Kaminari.paginate_array(@product.reviews.order('updated_at DESC')).page(params[:page]).per(5)
+			if @product.save!
+				flash[:notice] = "レビューを削除しました"
+				redirect_to user_path(current_user)
+			end
+		else
+			render 'products/show'
+		end
 	end
 
 	private
