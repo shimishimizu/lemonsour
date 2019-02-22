@@ -8,7 +8,7 @@ class ReviewsController < ApplicationController
 		    @reviews = Kaminari.paginate_array(@product.reviews.order('updated_at DESC')).page(params[:page]).per(5)
 		if @review.save
 			@reviews = @product.reviews.pluck(:review_star)
-			@product.average_star = reviews.sum.to_f / reviews.count
+			@product.average_star = @reviews.sum.to_f / @reviews.count
 			if @product.save
 			redirect_to product_path(@product.id)
 			end
