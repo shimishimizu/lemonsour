@@ -33,10 +33,13 @@
 					<td><%= @user.introduction %></td>
 				</tr>
 			</table>
+
+			<% if @user == current_user %>
 			<div class="user-edit-buttom">
 				<%= link_to edit_user_path(@user.id), class: "btn btn-success" do %>
 				<i class="fas fa-user-cog"></i> 編集<% end %>
 			</div>
+			<% end %>
 		</div>
 
 		<div class="col-xs-7 col-xs-offset-1">
@@ -69,12 +72,15 @@
 					<% end %><br>
 
 					<div class="rated" data-score="<%= review.review_star %>"></div>
+
+					<% if review.user == current_user %>
 					<div class="user-buttom">
 						<%= link_to edit_user_review_path(@user.id,review), class: "btn btn-success" do %>
 						<i class="fas fa-cog"></i> 編集<% end %>
 						<%= link_to user_review_path(@user.id,review), method: :delete, "data-confirm" => "本当に削除しますか？", class: "btn btn-danger" do %>
 						<i class="fas fa-trash-alt"></i> 削除<% end %>
 					</div>
+					<% end %>
 					<div class="user-date">
 						<% if review.created_at == review.updated_at %>
 						<label>投稿日：</label><%= review.created_at.strftime('%Y年%m月%d日 %H時%M分') %>
