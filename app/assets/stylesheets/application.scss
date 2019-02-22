@@ -19,10 +19,10 @@
 /* 会員登録 */
 .signup-container{
 	width: 100%;
-	height: 650px;
-	background-image: url("lemonwater2.jpg");
+	height: 720px;
+	background-image: url("signup.jpg");
 	background-size: cover;
-	color: #D1E829;
+	color: #007f08;
 }
 .signup-header{
 	padding: 20px 0;
@@ -44,10 +44,10 @@
 /*ログイン画面*/
 .login-container{
 	width: 100%;
-	height: 650px;
-	background-image: url("lemonwater.jpg");
+	height: 720px;
+	background-image: url("login.jpg");
 	background-size: cover;
-	color: #D1E829;
+	color: #ff9200;
 }
 .login-header{
 	padding: 20px 0;
@@ -62,7 +62,7 @@
 
 /* ヘッダー */
 header{
-	padding-top: 100px;
+	padding-top: 50px;
 }
 .site-logo{
 	width: 120px;
@@ -80,10 +80,18 @@ footer{
 	padding: 20px;
 	//color: white;
 }
+
+/*headerのpadding-topログイン後はもとに戻す*/
+ .top-space{
+ 	margin-top: 50px;
+ }
+
 /* ページャー */
 .paginate{
 	text-align: center;
 }
+
+
 
 /*flash*/
 .alert-alert {
