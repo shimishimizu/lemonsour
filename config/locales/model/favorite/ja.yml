@@ -1,11 +1,9 @@
 ja:
   activerecord:
     models:
-      review: レビュー
+      favorite: お気に入り
     attributes:
-      review:
-        review_star: 評価
-        opinion: レビュー本文
+      favorite:
         user: ユーザー名
         product: 商品名
         created_at: 作成日

@@ -1,0 +1,12 @@
+ja:
+  activerecord:
+    models:
+      information: 情報
+    attributes:
+      information:
+        information_title: タイトル
+        information_content: 本文
+        user: ユーザー名
+        information_images: 関連する画像
+        created_at: 作成日
+        updated_at: 更新日

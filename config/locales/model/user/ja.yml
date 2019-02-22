@@ -1,5 +1,7 @@
 ja:
   activerecord:
+    models:
+      user: ユーザー
     attributes:
       user:
         name: ユーザー名
@@ -9,3 +11,16 @@ ja:
         remember_me: ログイン状態を維持する
         introduction: 自己紹介
         profile_image: プロフィール画像
+        admin: 管理者
+        sign_in_count: ログイン回数
+        current_sign_in_at: 最終ログイン日時
+        last_sign_in_at: 前回ログイン日時
+        current_sign_in_ip: 現在ログインしているユーザーのIPアドレス
+        last_sign_in_ip: 前回ログインしたユーザーのIPアドレス
+        reset_password_sent_at: パスワードの再設定メール送信日時
+        remember_created_at: ログイン情報の保持機能有効日時
+        reviews: 投稿レビュー
+        products: 登録した商品
+        favorite: 登録済みお気に入り
+        created_at: 作成日
+        updated_at: 更新日
