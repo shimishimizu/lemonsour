@@ -26,11 +26,21 @@
 
 			<h3 align="center">レビュー編集</h3>
 			<%= form_for @review, :url => { :controller => :reviews, :action => :update } do |review| %>
-			<label>評価</label>
+			<% if @review.errors.any? %>
+				<div class="alert alert-danger" role="alert">
+					<strong>入力内容にエラーがあります</strong>
+					<ul>
+						<% @review.errors.full_messages.each do |message| %>
+							<li><%= message %></li>
+						<% end %>
+					</ul>
+				</div>
+			<% end %>
+			<label><%= review.label :review_star %></label>
 			<%= review.hidden_field :review_star, id: :rating %>
 			<div id="star-rating" data-score="<%= @review.review_star %>"></div><br>
 
-			<label>レビュー内容</label>
+			<label><%= review.label :opinion %></label>
 			<%= review.text_area :opinion, :size => "50x10" %><br>
 			<div class="review-update-btn">
 				<button type="submit" class="btn btn-info">

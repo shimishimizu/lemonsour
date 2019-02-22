@@ -7,3 +7,5 @@ ja:
         password_confirmation: パスワード確認
         email: メールアドレス
         remember_me: ログイン状態を維持する
+        introduction: 自己紹介
+        profile_image: プロフィール画像

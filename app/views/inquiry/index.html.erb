@@ -23,10 +23,10 @@
 				</div>
 				<div class="form-group">
 					メールアドレス<span class="text-danger">（必須）</span>
-					<%= f.text_field :email, class: "form-control" %>
+					<%= f.email_field :email, class: "form-control" %>
 				</div>
 				<div class="form-group">
-					お問い合わせ内容
+					リクエスト内容
 					<%= f.text_area :message, size: "80x10", class: "form-control"%>
 				</div>
 				<div class="inquiry-confirm-btn">
