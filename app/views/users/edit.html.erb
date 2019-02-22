@@ -4,20 +4,31 @@
 
 			<div  class=" edit-user">
 				<%= form_for @user do |user| %>
+				<% if @user.errors.any? %>
+					<div class="alert alert-danger" role="alert">
+						<strong>入力内容にエラーがあります</strong>
+						 <ul>
+						<% @user.errors.full_messages.each do |message| %>
+							<li><%= message %></li>
+						<% end %>
+						</ul>
+					</div>
+					<% end %>
 
 				<div class="form-group">
+					<%= user.label :profile_image %>
 					<%= user.attachment_field :profile_image %>
 				</div>
 				<div class="form-group">
-					ユーザ名
+					<%= user.label :name %>
 					<%= user.text_field :name, class: "form-control" %>
 				</div>
 				<div class="form-group">
-					email
+					<%= user.label :email %>
 					<%= user.email_field :email, class: "form-control" %>
 				</div>
 				<div class="form-group">
-					自己紹介
+					<%= user.label :introduction %>
 					<%= user.text_area :introduction, size:"50x10",class: "form-control" %>
 				</div>
 			</div>

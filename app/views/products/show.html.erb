@@ -7,8 +7,8 @@
 				<%= form_for [@product,@review] do |review| %>
 
 					<% if @review.errors.any? %>
-					<div id="error_explanation">
-						<%= @review.errors.count %>件のエラーが発生しました
+				<div class="alert alert-danger" role="alert">
+						<strong>入力内容にエラーがあります</strong>
 						 <ul>
 						<% @review.errors.full_messages.each do |message| %>
 							<li><%= message %></li>
@@ -17,11 +17,11 @@
 					</div>
 					<% end %>
 
-				<label>評価</label>
+				<label><%= review.label :review_star %></label>
 				<%= review.hidden_field :review_star, id: :rating %>
 				<div id='star-rating'></div><br>
 
-				<label>レビュー内容</label>
+				<label><%= review.label :opinion %></label>
 				<%= review.text_area :opinion, :size => "50x10" %><br>
 				<div class="review-btn">
 					<button type="submit" class="btn btn-info">
@@ -154,11 +154,11 @@
 				<h3 class="review-post-header" align="center">新規レビュー投稿</h3>
 				<%= form_for [@product,@review] do |review| %>
 
-				<label>評価</label>
+				<label><%= review.label :review_star %></label>
 				<%= review.hidden_field :review_star, id: :rating %>
 				<div id='star-rating'></div><br>
 
-				<label>レビュー内容</label>
+				<label><%= review.label :opinion %></label>
 				<%= review.text_area :opinion, :size => "50x10" %><br>
 				<div class="review-btn">
 					<button type="submit" class="btn btn-info">

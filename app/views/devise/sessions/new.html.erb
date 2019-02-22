@@ -1,10 +1,13 @@
 <div class="container login-container">
   <div class="row">
-    <div class="col-md-offset-2 form-fields">
+    <div class="col-md-offset-2 col-md-3 form-fields">
       <h2 class="login-header">ログイン</h2>
 
       <%= form_for(resource, as: resource_name, url: session_path(resource_name)) do |f| %>
       <%#= render "devise/shared/error_messages" %>
+      <% if alert %>
+          <p class="alert alert-danger"><%= alert %></p>
+      <% end %>
 
       <div class="field">
         <%= f.label :email %><br />
