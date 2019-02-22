@@ -7,7 +7,7 @@ class ProductsController < ApplicationController
   def show
   	@product = Product.find(params[:id])
     @review = Review.new
-    @reviews = Kaminari.paginate_array(@product.reviews.order('updated_at DESC')).page(params[:page]).per(5)
+    @reviews = Kaminari.paginate_array(@product.reviews.order(params[:sort]).order('updated_at DESC')).page(params[:page]).per(5)
   end
 
   def search
