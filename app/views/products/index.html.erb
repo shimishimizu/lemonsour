@@ -3,7 +3,9 @@
 		<div class="text-center">
 			<!-- <h1 class="top-headline1">ようこそ</h1> -->
 			<div class="index-site-logo">
-				<%= link_to image_tag("sitelogo.png", alt: "サイトロゴ"), root_path %>
+				<%= link_to "#main-products" do %>
+				<%= image_tag("sitelogo.png", alt: "サイトロゴ") %>
+				<% end %>
 			</div>
 			<!-- <h1 class="top-headline2">へ！！</h1> -->
 			<h2 class="top-headline3">一杯目から飲みたくなるレモンサワーを紹介中</h2>
@@ -68,52 +70,40 @@
 	<% end %>
 
 	<!-- 商品一覧 -->
-	<div class="row">
-		<% @products.each do |p| %>
+	<div class="row" id="main-products">
+		<% @products.each do |product| %>
 		<div class="product-thumb">
-			<%= link_to product_path(p.id) do %>
+			<%= link_to product_path(product.id) do %>
 			<div class="text-center">
-				<label><%= attachment_image_tag p, :product_image, format: 'jpeg', fallback: "no_image.jpg", size: "150x150" %></label><br>
-				<label></label>
-				<label class="text-center"><%= p.product_name %></label><br>
-
+				<label><%= attachment_image_tag product, :product_image, format: 'jpeg', fallback: "no_image.jpg", size: "150x150" %></label><br>
+				<label class="text-center"><%= product.product_name %></label><br>
 				<!-- レビュー平均値 -->
-				<div class="rated index-ave" data-score="<%= p.average_star %>"></div>
+				<div class="rated index-ave" data-score="<%= product.average_star %>"></div>
+			</div>
+			<% end %> <!--<%#= link_to product_path(product.id) do %> の閉じタグ -->
 
-
-				<% if user_signed_in? %>
-				<!-- レビュー -->
-				<span>
-					<% if p.reviewed_by?(current_user) %>
-					<i class="fas fa-file-alt" style="color: #62bb22;"></i>
-					<%= p.reviews.count %>
-					<% else %>
-					<i class="far fa-file-alt"></i>
-					<%= p.reviews.count %>
-					<% end %>
-				</span>
-
-				<!-- いいね -->
-				<span>
-					<% if p.favorited_by?(current_user) %>
-					<%#= link_to product_favorite_path(p,p.favorites), method: :delete do %>
-					<i class="fa fa-heart" aria-hidden="true" style="color: red;"></i>
-					<%= p.favorites.count %>
-					<%# end %>
-					<% else %>
-					<%#= link_to product_favorites_path(p), method: :post do %>
-					<i class="far fa-heart" aria-hidden="true"></i>
-					<%= p.favorites.count %>
-					<%# end %>
-					<% end %>
-
-					<% end %>
-				</span>
-
+			<% if user_signed_in? %>
+			<!-- いいね -->
+			<div id="favorites_buttons_<%= product.id %>">
+				<%= render partial: 'products/favorite', locals: { product: product, favorites: @favorites} %>
+			</div>
+			<!-- レビュー -->
+			<div>
+				<% if product.reviewed_by?(current_user) %>
+				<div class="review-icon">
+				<i class="fas fa-file-alt" style="color: #62bb22;"></i>
+				<%= product.reviews.count %>
+			</div>
+				<% else %>
+				<div class="review-icon">
+				<i class="far fa-file-alt"></i>
+				<%= product.reviews.count %>
+			</div>
+				<% end %>
 			</div>
 			<% end %>
 		</div>
-		<% end %>
+		<% end %><!-- <%# @products.each do |product| %>の閉じタグ -->
 	</div>
 	<div class="paginate">
 		<%= paginate @products%>

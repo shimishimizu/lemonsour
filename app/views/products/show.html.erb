@@ -6,21 +6,19 @@
 				<h3 class="review-post-header" align="center">新規レビュー投稿</h3>
 				<%= form_for [@product,@review] do |review| %>
 
-					<% if @review.errors.any? %>
-					<div class="alert alert-danger" role="alert">
-						<strong>入力内容にエラーがあります</strong>
-						<ul>
-							<% @review.errors.full_messages.each do |message| %>
-							<li><%= message %></li>
-							<% end %>
-						</ul>
-					</div>
-					<% end %>
-
+				<% if @review.errors.any? %>
+				<div class="alert alert-danger" role="alert">
+					<strong>入力内容にエラーがあります</strong>
+					<ul>
+						<% @review.errors.full_messages.each do |message| %>
+						<li><%= message %></li>
+						<% end %>
+					</ul>
+				</div>
+				<% end %><!-- <%# if @review.errors.any? %>の閉じタグ -->
 				<label><%= review.label :review_star %></label>
 				<%= review.hidden_field :review_star, id: :rating %>
 				<div id='star-rating'></div><br>
-
 				<label><%= review.label :opinion %></label>
 				<%= review.text_area :opinion, :size => "43x10" %><br>
 				<div class="review-btn">
@@ -28,7 +26,7 @@
 						<i class="fas fa-plus"></i> 投稿
 					</button>
 				</div>
-				<% end %>
+				<% end %><!-- form_forの閉じタグ -->
 			</div>
 
 			<table  class="table product-info">
@@ -36,23 +34,16 @@
 					<td style="border:none;" colspan="2">
 
 						<% if @product.product_image.present? %>
-							<%= link_to(image_tag(attachment_url(@product, :product_image, :fill, 250, 250, format: 'jpg')), attachment_url(@product, :product_image, :fit, 500, 500, format: 'jpg'), data: { lightbox: "product-set" }) %>
-							<% else %>
-							<%= image_tag 'no_image.jpg', size: '250x250' %>
+						<%= link_to(image_tag(attachment_url(@product, :product_image, :fill, 250, 250, format: 'jpg')), attachment_url(@product, :product_image, :fit, 500, 500, format: 'jpg'), data: { lightbox: "product-set" }) %>
+						<% else %>
+						<%= image_tag 'no_image.jpg', size: '250x250' %>
 						<% end %>
 
 						<!-- いいね -->
 						<% if user_signed_in? %>
-							<% if @product.favorited_by?(current_user) %>
-								<%= link_to product_favorites_path(@product), method: :delete do %>
-								<i class="heart-icon fa fa-heart" aria-hidden="true" style="color: red;"></i><br>
-								<% end %>
-
-							<% else %>
-								<%= link_to product_favorites_path(@product), method: :post do %>
-								<i class="heart-icon far fa-heart" aria-hidden="true"></i><br>
-								<% end %>
-							<% end %>
+						<div id="favorites_buttons_<%= @product.id %>">
+							<%= render partial: 'products/favorite', locals: { product: @product, favorites: @favorites} %>
+						</div>
 						<% end %>
 					</td>
 				</tr>
@@ -61,15 +52,13 @@
 						<!-- レビュー平均値 -->
 						<div class="rated" data-score="<%= @product.average_star %>"></div>
 						<% if @product.average_star.present? %>
-							<%= @product.average_star.round(1) %> / 5.0
+						<%= @product.average_star.round(1) %> / 5.0
 						<% end %>
 					</td>
 				</tr>
 				<tr align="center">
 					<td colspan="2">
-						<%= link_to product_users_path(@product.id) do %>
-						<%= @product.favorites.count %> 人がお気に入り
-						<% end %>
+						<%= link_to "お気に入りに登録しているユーザー", product_users_path(@product.id) %>
 					</td>
 				</tr>
 				<tr>
@@ -101,18 +90,9 @@
 						<% end %>
 
 						<!-- いいね -->
-						<% if user_signed_in? %>
-						<% if @product.favorited_by?(current_user) %>
-						<%= link_to product_favorites_path(@product), method: :delete do %>
-						<i class="heart-icon fa fa-heart" aria-hidden="true" style="color: red;"></i><br>
-						<% end %>
-
-						<% else %>
-						<%= link_to product_favorites_path(@product), method: :post do %>
-						<i class="heart-icon far fa-heart" aria-hidden="true"></i><br>
-						<% end %>
-						<% end %>
-						<% end %>
+						<div id="favorites_buttons_<%= @product.id %>">
+							<%= render partial: 'products/favorite', locals: { product: @product, favorites: @favorites} %>
+						</div>
 					</td>
 				</tr>
 				<tr align="center">
@@ -126,9 +106,7 @@
 				</tr>
 				<tr align="center">
 					<td colspan="2">
-						<%= link_to product_users_path(@product.id) do %>
-						<%= @product.favorites.count %> 人がお気に入り
-						<% end %>
+						<%= link_to "お気に入りに登録しているユーザー", product_users_path(@product.id) %>
 					</td>
 				</tr>
 				<tr>
@@ -174,7 +152,7 @@
 		<div class="col-xs-7 col-xs-offset-1">
 			<!-- ページ内リンク -->
 			<% if user_signed_in? %>
-			<%= link_to("レビューを書く", { anchor: "new-review" }, class: "btn btn-warning btn-lg") %>
+			<%= link_to("レビューを書く", "#new-review", class: "btn btn-warning btn-lg") %>
 			<% end %>
 			<div class="row">
 				<% if @reviews.empty? %>
@@ -208,9 +186,7 @@
 					</div>
 				</div>
 				<% @reviews.each do |review| %>
-
 				<div class="col-xs-12 review-box">
-
 					<!-- Newアイコン -->
 					<% if review.is_new %>
 					<p  class="new-review"><%= image_tag 'newlogo.gif', :size =>'40x15' %></p>
@@ -225,9 +201,7 @@
 					<%= attachment_image_tag review.user, :profile_image, format: 'jpeg', fallback: "no_image.jpg", size: "75x75" %>
 					<%= review.user.name %>
 					<% end %><br>
-
 					<div class="rated" data-score="<%= review.review_star %>"></div>
-
 					<div class="p-date">
 						<% if review.created_at == review.updated_at %>
 						<label>投稿日：</label><%= review.created_at.strftime('%Y年%m月%d日 %H時%M分') %>
@@ -243,11 +217,8 @@
 				<div class="paginate">
 					<%= paginate @reviews %>
 				</div>
-
 			</div>
-
 		</div>
-
 	</div>
 	<div class="p-index-button">
 		<%= link_to "一覧へ戻る", products_path, class: "btn btn-default" %>

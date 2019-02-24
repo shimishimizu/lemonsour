@@ -8,7 +8,7 @@ Rails.application.routes.draw do
 
   resources :products, only: [:index, :show] do
   	resources :reviews, only: [:create, :update, :destroy]
-    resource :favorites, only: [:create, :destroy]
+    resources :favorites, only: [:create, :destroy]
     resources :users, only: [:index]
     collection do
       get 'search'
