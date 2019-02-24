@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2019_02_19_095358) do
+ActiveRecord::Schema.define(version: 2019_02_24_150230) do
 
   create_table "favorites", force: :cascade do |t|
     t.integer "user_id"
@@ -49,7 +49,7 @@ ActiveRecord::Schema.define(version: 2019_02_19_095358) do
     t.text "nutrition"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-    t.integer "favorites_count"
+    t.integer "favorites_count", default: 0
     t.float "average_star", default: 0.0
   end
 
@@ -60,6 +60,7 @@ ActiveRecord::Schema.define(version: 2019_02_19_095358) do
     t.text "opinion"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.index ["user_id", "product_id"], name: "index_reviews_on_user_id_and_product_id"
   end
 
   create_table "users", force: :cascade do |t|

@@ -1,7 +1,6 @@
 <div class="container top-space">
 	<div class="row">
 		<div class="col-xs-4">
-
 			<table  class="table user-info">
 				<tr align="center">
 					<td style="border:none;" colspan="2"><%= attachment_image_tag @user, :profile_image, format: 'jpg', fallback: "no_image.jpg", size: "150x150" %></td>
@@ -35,6 +34,7 @@
 			</table>
 
 			<% if @user == current_user %>
+
 			<div class="user-edit-buttom">
 				<%= link_to edit_user_path(@user.id), class: "btn btn-success" do %>
 				<i class="fas fa-user-cog"></i> 編集<% end %>
@@ -43,8 +43,8 @@
 		</div>
 
 		<div class="col-xs-7 col-xs-offset-1">
-
 			<div class="row">
+
 				<% if @reviews.empty? %>
 				<div class="user-noreview">
 					<h3>レビューはまだありません</h3>
@@ -55,7 +55,6 @@
 				<% @reviews.each do |review| %>
 
 				<div class="col-xs-12 user-review-box">
-
 					<!-- Newアイコン -->
 					<% if review.is_new %>
 					<p  class="new-review"><%= image_tag 'newlogo.gif', :size =>'40x15' %></p>
@@ -70,7 +69,6 @@
 					<%= attachment_image_tag review.product, :product_image, format: 'jpeg', fallback: "no_image.jpg", size: "75x75" %>
 					<%= review.product.product_name %>
 					<% end %><br>
-
 					<div class="rated" data-score="<%= review.review_star %>"></div>
 
 					<% if review.user == current_user %>

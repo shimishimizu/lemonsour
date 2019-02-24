@@ -52,6 +52,10 @@
 	background-color: white;
     box-shadow:0 5px 5px -5px #000;
 }
+.review-icon{
+	font-size: 18px;
+	float: right;
+}
 
 //商品詳細
 .product-info{
@@ -73,8 +77,9 @@
 	margin: 50px 0 10px 0;
 }
 .heart-icon{
-	font-size: 20px;
-	vertical-align: bottom;
+	font-size: 18px;
+	float: right;
+	padding-left: 10px;
 }
 .review-sort-btn{
 	width: 170px;
@@ -90,4 +95,8 @@
  }
 #new-review{
 	padding-top: 50px;
+}
+/*お気に入り一覧*/
+.favorite-image{
+	margin-top: 40px;
 }
