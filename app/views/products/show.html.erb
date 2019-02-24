@@ -6,23 +6,23 @@
 				<h3 class="review-post-header" align="center">新規レビュー投稿</h3>
 				<%= form_for [@product,@review] do |review| %>
 
-				<% if @review.errors.any? %>
-				<div class="alert alert-danger" role="alert">
-					<strong>入力内容にエラーがあります</strong>
-					<ul>
-						<% @review.errors.full_messages.each do |message| %>
-						<li><%= message %></li>
-						<% end %>
-					</ul>
-				</div>
-				<% end %>
+					<% if @review.errors.any? %>
+					<div class="alert alert-danger" role="alert">
+						<strong>入力内容にエラーがあります</strong>
+						<ul>
+							<% @review.errors.full_messages.each do |message| %>
+							<li><%= message %></li>
+							<% end %>
+						</ul>
+					</div>
+					<% end %>
 
 				<label><%= review.label :review_star %></label>
 				<%= review.hidden_field :review_star, id: :rating %>
 				<div id='star-rating'></div><br>
 
 				<label><%= review.label :opinion %></label>
-				<%= review.text_area :opinion, :size => "50x10" %><br>
+				<%= review.text_area :opinion, :size => "43x10" %><br>
 				<div class="review-btn">
 					<button type="submit" class="btn btn-info">
 						<i class="fas fa-plus"></i> 投稿
@@ -36,23 +36,23 @@
 					<td style="border:none;" colspan="2">
 
 						<% if @product.product_image.present? %>
-						<%= link_to(image_tag(attachment_url(@product, :product_image, :fill, 250, 250, format: 'jpg')), attachment_url(@product, :product_image, :fit, 500, 500, format: 'jpg'), data: { lightbox: "product-set" }) %>
-						<% else %>
-						<%= image_tag 'no_image.jpg', size: '250x250' %>
+							<%= link_to(image_tag(attachment_url(@product, :product_image, :fill, 250, 250, format: 'jpg')), attachment_url(@product, :product_image, :fit, 500, 500, format: 'jpg'), data: { lightbox: "product-set" }) %>
+							<% else %>
+							<%= image_tag 'no_image.jpg', size: '250x250' %>
 						<% end %>
 
 						<!-- いいね -->
 						<% if user_signed_in? %>
-						<% if @product.favorited_by?(current_user) %>
-						<%= link_to product_favorites_path(@product), method: :delete do %>
-						<i class="heart-icon fa fa-heart" aria-hidden="true" style="color: red;"></i><br>
-						<% end %>
+							<% if @product.favorited_by?(current_user) %>
+								<%= link_to product_favorites_path(@product), method: :delete do %>
+								<i class="heart-icon fa fa-heart" aria-hidden="true" style="color: red;"></i><br>
+								<% end %>
 
-						<% else %>
-						<%= link_to product_favorites_path(@product), method: :post do %>
-						<i class="heart-icon far fa-heart" aria-hidden="true"></i><br>
-						<% end %>
-						<% end %>
+							<% else %>
+								<%= link_to product_favorites_path(@product), method: :post do %>
+								<i class="heart-icon far fa-heart" aria-hidden="true"></i><br>
+								<% end %>
+							<% end %>
 						<% end %>
 					</td>
 				</tr>
@@ -61,7 +61,7 @@
 						<!-- レビュー平均値 -->
 						<div class="rated" data-score="<%= @product.average_star %>"></div>
 						<% if @product.average_star.present? %>
-						<%= @product.average_star.round(1) %> / 5.0
+							<%= @product.average_star.round(1) %> / 5.0
 						<% end %>
 					</td>
 				</tr>
@@ -89,7 +89,7 @@
 					<td><%= @product.nutrition %></td>
 				</tr>
 			</table>
-			<% else %>
+			<% else %> <!-- <%# if @review.errors.any? %> -->
 			<table  class="table product-info">
 				<tr align="center">
 					<td style="border:none;" colspan="2">
@@ -159,7 +159,7 @@
 				<div id='star-rating'></div><br>
 
 				<label><%= review.label :opinion %></label>
-				<%= review.text_area :opinion, :size => "50x10" %><br>
+				<%= review.text_area :opinion, :size => "43x10" %><br>
 				<div class="review-btn">
 					<button type="submit" class="btn btn-info">
 						<i class="fas fa-plus"></i> 投稿
@@ -168,7 +168,7 @@
 				<% end %>
 			</div>
 			<% end %>
-			<% end %>
+			<% end %> <!-- <%# if @review.errors.any? %> -->
 		</div>
 
 		<div class="col-xs-7 col-xs-offset-1">
@@ -186,27 +186,27 @@
 				<h3 class="p-review-counter">レビュー全 <%= @reviews.total_count %> 件</h3>
 				<!-- ソート機能 -->
 				<div class="review-sort-btn">
-				<div class="btn-group">
-					<button type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown" aria-expanded="false">
-						評価順
-						<span class="caret"></span>
-					</button>
-					<ul class="dropdown-menu" role="menu">
-						<li role="presentation"><%= link_to "評価高い順", sort: "review_star desc" %></li>
-						<li role="presentation"><%= link_to "評価低い順", sort: "review_star" %></li>
-					</ul>
+					<div class="btn-group">
+						<button type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown" aria-expanded="false">
+							評価順
+							<span class="caret"></span>
+						</button>
+						<ul class="dropdown-menu" role="menu">
+							<li role="presentation"><%= link_to "評価高い順", sort: "review_star desc" %></li>
+							<li role="presentation"><%= link_to "評価低い順", sort: "review_star" %></li>
+						</ul>
+					</div>
+					<div class="btn-group">
+						<button type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown" aria-expanded="false">
+							投稿順
+							<span class="caret"></span>
+						</button>
+						<ul class="dropdown-menu" role="menu">
+							<li role="presentation"><%= link_to "新着順", sort: "updated_at desc" %></li>
+							<li role="presentation"><%= link_to "投稿順", sort: "updated_at" %></li>
+						</ul>
+					</div>
 				</div>
-				<div class="btn-group">
-					<button type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown" aria-expanded="false">
-						投稿順
-						<span class="caret"></span>
-					</button>
-					<ul class="dropdown-menu" role="menu">
-						<li role="presentation"><%= link_to "新着順", sort: "updated_at desc" %></li>
-						<li role="presentation"><%= link_to "投稿順", sort: "updated_at" %></li>
-					</ul>
-				</div>
-			</div>
 				<% @reviews.each do |review| %>
 
 				<div class="col-xs-12 review-box">
