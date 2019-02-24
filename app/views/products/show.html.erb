@@ -152,7 +152,7 @@
 		<div class="col-xs-7 col-xs-offset-1">
 			<!-- ページ内リンク -->
 			<% if user_signed_in? %>
-			<%= link_to("レビューを書く", { anchor: "new-review" }, class: "btn btn-warning btn-lg") %>
+			<%= link_to("レビューを書く", "#new-review", class: "btn btn-warning btn-lg") %>
 			<% end %>
 			<div class="row">
 				<% if @reviews.empty? %>

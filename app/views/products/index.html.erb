@@ -3,7 +3,9 @@
 		<div class="text-center">
 			<!-- <h1 class="top-headline1">ようこそ</h1> -->
 			<div class="index-site-logo">
-				<%= link_to image_tag("sitelogo.png", alt: "サイトロゴ"), root_path %>
+				<%= link_to "#main-products" do %>
+				<%= image_tag("sitelogo.png", alt: "サイトロゴ") %>
+				<% end %>
 			</div>
 			<!-- <h1 class="top-headline2">へ！！</h1> -->
 			<h2 class="top-headline3">一杯目から飲みたくなるレモンサワーを紹介中</h2>
@@ -68,7 +70,7 @@
 	<% end %>
 
 	<!-- 商品一覧 -->
-	<div class="row">
+	<div class="row" id="main-products">
 		<% @products.each do |product| %>
 		<div class="product-thumb">
 			<%= link_to product_path(product.id) do %>
