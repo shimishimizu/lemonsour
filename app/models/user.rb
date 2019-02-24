@@ -12,8 +12,23 @@ class User < ApplicationRecord
 
   has_many :favorites, dependent: :destroy
 
+  has_many :informations
+
   validates :name, presence: true
   validates :email, format: { with: /\A[\w+\-.]+@[a-z\d\-.]+\.[a-z]+\z/i }
   validates :introduction, length: { maximum: 1000 }
 
+end
+
+class ActiveModel::Errors
+  def full_messages
+    map do |attribute, message|
+      msg = full_message(attribute, message)
+      if msg == 'User1商品につき1レビューとなっております。'
+        message
+      else
+        msg
+      end
+    end
+  end
 end
