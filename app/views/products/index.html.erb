@@ -63,8 +63,8 @@
 			<span class="caret"></span>
 		</button>
 		<ul class="dropdown-menu" role="menu">
-			<li role="presentation"><%= link_to "多い順", sort: "count(favorites.id) DESC" %></li>
-			<li role="presentation"><%= link_to "少ない順", sort: "count(favorites.id)" %></li>
+			<li role="presentation"><%= link_to "多い順", sort: "favorites_count DESC" %></li>
+			<li role="presentation"><%= link_to "少ない順", sort: "favorites_count" %></li>
 		</ul>
 	</div>
 	<% end %>
