@@ -23,10 +23,12 @@
 					<td>ユーザ名</td>
 					<td><%= @user.name %></td>
 				</tr>
+				<% if @user == current_user %>
 				<tr>
 					<td>email</td>
 					<td><%= @user.email %></td>
 				</tr>
+				<% end %>
 				<tr>
 					<td>自己紹介</td>
 					<td><%= @user.introduction %></td>
