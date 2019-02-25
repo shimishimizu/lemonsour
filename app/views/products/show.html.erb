@@ -36,7 +36,7 @@
 						<% if @product.product_image.present? %>
 						<%= link_to(image_tag(attachment_url(@product, :product_image, :fill, 250, 250, format: 'jpg')), attachment_url(@product, :product_image, :fit, 500, 500, format: 'jpg'), data: { lightbox: "product-set" }) %>
 						<% else %>
-						<%= image_tag 'no_image.jpg', size: '250x250' %>
+						<%= image_tag 'no_image_product.png', size: '250x250' %>
 						<% end %>
 
 						<!-- いいね -->
@@ -86,7 +86,7 @@
 						<% if @product.product_image.present? %>
 						<%= link_to(image_tag(attachment_url(@product, :product_image, :fill, 250, 250, format: 'jpg')), attachment_url(@product, :product_image, :fit, 500, 500, format: 'jpg'), data: { lightbox: "product-set" }) %>
 						<% else %>
-						<%= image_tag 'no_image.jpg', size: '250x250' %>
+						<%= image_tag 'no_image_product.png', size: '250x250' %>
 						<% end %>
 
 						<!-- いいね -->
@@ -198,7 +198,7 @@
 					<% end %>
 
 					<%= link_to user_path(review.user.id) do %>
-					<%= attachment_image_tag review.user, :profile_image, format: 'jpeg', fallback: "no_image.jpg", size: "75x75" %>
+					<%= attachment_image_tag review.user, :profile_image, format: 'jpeg', fallback: "no_image_user.jpeg", size: "75x75" %>
 					<%= review.user.name %>
 					<% end %><br>
 					<div class="rated" data-score="<%= review.review_star %>"></div>

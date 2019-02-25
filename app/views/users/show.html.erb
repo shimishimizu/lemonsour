@@ -3,7 +3,7 @@
 		<div class="col-xs-4">
 			<table  class="table user-info">
 				<tr align="center">
-					<td style="border:none;" colspan="2"><%= attachment_image_tag @user, :profile_image, format: 'jpg', fallback: "no_image.jpg", size: "150x150" %></td>
+					<td style="border:none;" colspan="2"><%= attachment_image_tag @user, :profile_image, format: 'jpg', fallback: "no_image_user.jpeg", size: "150x150" %></td>
 				</tr>
 				<tr>
 					<td colspan="2" class="user-favorite-counter">
@@ -68,7 +68,7 @@
 					<% end %>
 
 					<%= link_to product_path(review.product.id) do %>
-					<%= attachment_image_tag review.product, :product_image, format: 'jpeg', fallback: "no_image.jpg", size: "75x75" %>
+					<%= attachment_image_tag review.product, :product_image, format: 'jpeg', fallback: "no_image_product.png", size: "75x75" %>
 					<%= review.product.product_name %>
 					<% end %><br>
 					<div class="rated" data-score="<%= review.review_star %>"></div>

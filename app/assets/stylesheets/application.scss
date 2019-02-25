@@ -25,12 +25,14 @@ font-family: "ヒラギノ角ゴ Pro W3", "Hiragino Kaku Gothic Pro", "メイリ
 .signup-container{
 	width: 100%;
 	height: 720px;
-	background-image: url("signup.jpg");
+	background-image: url("top.jpg");
 	background-size: cover;
-	color: #007f08;
+	color: #4e4e53;
+	background-position: center;
+	text-align: center;
 }
 .signup-header{
-	padding: 20px 0;
+	padding-top: 130px;
 	font-weight: bold;
 }
 .field{
@@ -41,30 +43,26 @@ font-family: "ヒラギノ角ゴ Pro W3", "Hiragino Kaku Gothic Pro", "メイリ
 }
 .button1{
 	color: black;
-}
-.actions1{
-	margin-left: 15px;
-	width: 152px;
+	width: 170px;
 }
 
 /*ログイン画面*/
 .login-container{
 	width: 100%;
 	height: 720px;
-	background-image: url("login.jpg");
+	background-image: url("top.jpg");
 	background-size: cover;
-	color: #e56b00;
+	color: #4e4e53;
+	background-position: center;
+	text-align: center;
 }
 .login-header{
-	padding: 20px 0;
+	padding-top: 180px;
 	font-weight: bold;
 }
 .button2{
 	color: black;
-	width: 152px;
-}
-.actions2{
-	margin-left: 15px;
+	width: 170px;
 }
 
 /* ヘッダー */
@@ -111,4 +109,18 @@ footer{
   	border-color: #d6e9c6;
   	color: #468847;
   	text-align: left;
+}
+
+/*forget password*/
+.forget-password-container{
+	width: 100%;
+	height: 720px;
+	background-image: url("top.jpg");
+	background-size: cover;
+	background-position: center;
+	text-align: center;
+}
+.forget-password-header{
+	font-weight: bold;
+	margin-top: 250px;
 }
