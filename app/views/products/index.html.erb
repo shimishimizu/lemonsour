@@ -19,7 +19,7 @@
 		<!-- 管理者ボタン -->
 		<% if current_user.try(:admin?) %>
 		<div class="admin-btn col-xs-6 col-xs-offset-3">
-			<%= link_to "管理画面はこちら", "/admin", class: "btn btn-warning btn-block" %>
+			<%= link_to "管理画面はこちら", "/admin", class: "btn btn-warning btn-block btn-lg" %>
 		</div>
 		<% end %>
 	</div>
