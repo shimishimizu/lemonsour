@@ -53,7 +53,7 @@
 			<span class="caret"></span>
 		</button>
 		<ul class="dropdown-menu" role="menu">
-			<li role="presentation"><%= link_to "多い順", sort: "count(reviews.id) DESC" %></li>
+			<li role="presentation"><%= link_to "多い順", sort: "count(reviews.id) desc" %></li>
 			<li role="presentation"><%= link_to "少ない順", sort: "count(reviews.id)" %></li>
 		</ul>
 	</div>
@@ -63,7 +63,7 @@
 			<span class="caret"></span>
 		</button>
 		<ul class="dropdown-menu" role="menu">
-			<li role="presentation"><%= link_to "多い順", sort: "favorites_count DESC" %></li>
+			<li role="presentation"><%= link_to "多い順", sort: "favorites_count desc" %></li>
 			<li role="presentation"><%= link_to "少ない順", sort: "favorites_count" %></li>
 		</ul>
 	</div>
@@ -76,7 +76,7 @@
 			<%= link_to product_path(product.id) do %>
 			<div class="text-center">
 				<label><%= attachment_image_tag product, :product_image, format: 'jpeg', fallback: "no_image_product.png", size: "150x150" %></label><br>
-				<label class="text-center"><%= product.product_name %></label><br>
+				<label class="text-center"><%= product.product_name.truncate(15) %></label><br>
 				<!-- レビュー平均値 -->
 				<div class="rated index-ave" data-score="<%= product.average_star %>"></div>
 			</div>

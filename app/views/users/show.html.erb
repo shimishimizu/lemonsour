@@ -31,7 +31,7 @@
 				<% end %>
 				<tr>
 					<td>自己紹介</td>
-					<td><%= @user.introduction %></td>
+					<td><%= simple_format(@user.introduction) %></td>
 				</tr>
 			</table>
 
@@ -69,7 +69,7 @@
 
 					<%= link_to product_path(review.product.id) do %>
 					<%= attachment_image_tag review.product, :product_image, format: 'jpeg', fallback: "no_image_product.png", size: "75x75" %>
-					<%= review.product.product_name %>
+					<%= review.product.product_name.truncate(20) %>
 					<% end %><br>
 					<div class="rated" data-score="<%= review.review_star %>"></div>
 

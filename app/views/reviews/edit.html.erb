@@ -1,14 +1,11 @@
 <div class="container top-space">
 	<div class="row">
 		<div class="col-xs-4">
+			<h2 class="product-name"><%= @review.product.product_name %></h2>
 			<table  class="table product-info">
 				<tr align="center">
 					<td style="border:none;" colspan="2"><%= attachment_image_tag @review.product, :product_image, format: 'jpeg', fallback: "no_image_user.jpeg", size: "150x150" %>
 					</td>
-				</tr>
-				<tr>
-					<td>商品名</td>
-					<td><%= @review.product.product_name %></td>
 				</tr>
 				<tr>
 					<td>メーカー</td>
