@@ -26,11 +26,10 @@ class ReviewsController < ApplicationController
 	def update
 		@review = Review.find(params[:id])
 		if @review.update(review_params)
-
-			product = Product.find_by(params[:product_id])
-			@reviews = product.reviews.pluck(:review_star)
-			product.average_star = @reviews.sum.to_f / @reviews.count
-			if product.save!
+			@product = @review.product
+			@reviews = @product.reviews.pluck(:review_star)
+			@product.average_star = @reviews.sum.to_f / @reviews.count
+			if @product.save!
 				flash[:notice] = "レビューを編集しました"
 				redirect_to user_path(current_user)
 			end
@@ -40,11 +39,11 @@ class ReviewsController < ApplicationController
 	end
 
 	def destroy
-		reviews = Review.find(params[:id])
-		user = User.where(review_id: @reviews)
-		if reviews.destroy!
+		@review_destroy = Review.find(params[:id])
+		@user = User.where(review_id: @reviews)
+		if @review_destroy.destroy!
 
-			@product = Product.find_by(params[:product_id])
+			@product = @review_destroy.product
 			reviews = @product.reviews.pluck(:review_star)
 			@product.average_star = reviews.sum.to_f / reviews.count
 

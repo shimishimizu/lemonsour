@@ -17,10 +17,12 @@
 				</tr>
 				<tr>
 					<td>栄養成分表示</td>
-					<td><%= @review.product.nutrition %></td>
+					<td><%= simple_format(@review.product.nutrition) %></td>
 				</tr>
 			</table>
+		</div>
 
+		<div class="col-xs-5 col-xs-offset-2">
 			<h3 align="center">レビュー編集</h3>
 			<%= form_for @review, :url => { :controller => :reviews, :action => :update } do |review| %>
 			<% if @review.errors.any? %>
@@ -37,8 +39,8 @@
 			<%= review.hidden_field :review_star, id: :rating %>
 			<div id="star-rating" data-score="<%= @review.review_star %>"></div><br>
 
-			<label><%= review.label :opinion %></label>
-			<%= review.text_area :opinion, :size => "43x10" %><br>
+			<label><%= review.label :opinion %></label><br>
+			<%= review.text_area :opinion, :size => "55x12" %><br>
 			<div class="review-update-btn">
 				<button type="submit" class="btn btn-info">
 					<i class="fas fa-check"></i> 保存

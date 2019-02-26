@@ -27,10 +27,10 @@
 					<div class="col-xs-9">
 						<div class="info-date">
 							<% if i.created_at == i.updated_at %>
-							掲載日：<%= i.created_at.strftime('%Y年%m月%d日 %H時%M分') %>
+							掲載日：<%= i.created_at.strftime('%Y-%m-%d %H:%M') %>
 							<% else %>
-							更新日：<%= i.updated_at.strftime('%Y年%m月%d日 %H時%M分') %>
-							掲載日：<%= i.created_at.strftime('%Y年%m月%d日 %H時%M分') %>
+							更新日：<%= i.updated_at.strftime('%Y-%m-%d %H:%M') %>
+							掲載日：<%= i.created_at.strftime('%Y-%m-%d %H:%M') %>
 							<% end %>
 						</div>
 						<div class="information-index-title">
