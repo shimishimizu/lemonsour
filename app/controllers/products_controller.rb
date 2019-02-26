@@ -1,6 +1,6 @@
 class ProductsController < ApplicationController
   def index
-  	@products = Product.page(params[:page]).eager_load(:reviews, :favorites).group("products.id").order(params[:sort])
+  	@products = Product.page(params[:page]).eager_load(:reviews).group("products.id").order(params[:sort])
     @reviews = Review.all
   end
 

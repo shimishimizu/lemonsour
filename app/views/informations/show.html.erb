@@ -7,10 +7,10 @@
 			</div>
 			<div class="information-date">
 				<% if @information.created_at == @information.updated_at %>
-				掲載日：<%= @information.created_at.strftime('%Y年%m月%d日 %H時%M分') %>
+				掲載日：<%= @information.created_at.strftime('%Y-%m-%d %H:%M') %>
 				<% else %>
-				更新日：<%= @information.updated_at.strftime('%Y年%m月%d日 %H時%M分') %>
-				掲載日：<%= @information.created_at.strftime('%Y年%m月%d日 %H時%M分') %>
+				更新日：<%= @information.updated_at.strftime('%Y-%m-%d %H:%M') %>
+				掲載日：<%= @information.created_at.strftime('%Y-%m-%d %H:%M') %>
 				<% end %>
 			</div>
 
@@ -20,7 +20,7 @@
 			<%= link_to(image_tag(attachment_url(image, :information_image, :fill, 200, 200, format: 'jpg')), attachment_url(image, :information_image, :fit, 500, 500, format: 'jpg'), data: { lightbox: "information-set" }) %>
 			<% end %>
 			<% else %>
-			<%= image_tag 'no_image.jpg', size: '200x200' %>
+			<%= image_tag 'no_image_product.png', size: '200x200' %>
 			<% end %>
 
 			<!-- information本文 -->

@@ -1,14 +1,11 @@
 <div class="container top-space">
 	<div class="row">
 		<div class="col-xs-4">
+			<h2 class="product-name"><%= @review.product.product_name %></h2>
 			<table  class="table product-info">
 				<tr align="center">
-					<td style="border:none;" colspan="2"><%= attachment_image_tag @review.product, :product_image, format: 'jpeg', fallback: "no_image.jpg", size: "150x150" %>
+					<td style="border:none;" colspan="2"><%= attachment_image_tag @review.product, :product_image, format: 'jpeg', fallback: "no_image_user.jpeg", size: "150x150" %>
 					</td>
-				</tr>
-				<tr>
-					<td>商品名</td>
-					<td><%= @review.product.product_name %></td>
 				</tr>
 				<tr>
 					<td>メーカー</td>
@@ -20,10 +17,12 @@
 				</tr>
 				<tr>
 					<td>栄養成分表示</td>
-					<td><%= @review.product.nutrition %></td>
+					<td><%= simple_format(@review.product.nutrition) %></td>
 				</tr>
 			</table>
+		</div>
 
+		<div class="col-xs-5 col-xs-offset-2">
 			<h3 align="center">レビュー編集</h3>
 			<%= form_for @review, :url => { :controller => :reviews, :action => :update } do |review| %>
 			<% if @review.errors.any? %>
@@ -40,8 +39,8 @@
 			<%= review.hidden_field :review_star, id: :rating %>
 			<div id="star-rating" data-score="<%= @review.review_star %>"></div><br>
 
-			<label><%= review.label :opinion %></label>
-			<%= review.text_area :opinion, :size => "43x10" %><br>
+			<label><%= review.label :opinion %></label><br>
+			<%= review.text_area :opinion, :size => "55x12" %><br>
 			<div class="review-update-btn">
 				<button type="submit" class="btn btn-info">
 					<i class="fas fa-check"></i> 保存

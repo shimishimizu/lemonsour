@@ -1,6 +1,8 @@
 <div class="container top-space">
 	<div class="row">
 		<div class="col-xs-4">
+			<h2 class="product-name"><%= @product.product_name %></h2>
+
 			<% if @review.errors.any? %>
 			<div id="new-review">
 				<h3 class="review-post-header" align="center">新規レビュー投稿</h3>
@@ -36,7 +38,7 @@
 						<% if @product.product_image.present? %>
 						<%= link_to(image_tag(attachment_url(@product, :product_image, :fill, 250, 250, format: 'jpg')), attachment_url(@product, :product_image, :fit, 500, 500, format: 'jpg'), data: { lightbox: "product-set" }) %>
 						<% else %>
-						<%= image_tag 'no_image.jpg', size: '250x250' %>
+						<%= image_tag 'no_image_product.png', size: '250x250' %>
 						<% end %>
 
 						<!-- いいね -->
@@ -62,10 +64,6 @@
 					</td>
 				</tr>
 				<tr>
-					<td>商品名</td>
-					<td><%= @product.product_name %></td>
-				</tr>
-				<tr>
 					<td>メーカー</td>
 					<td><%= @product.maker %></td>
 				</tr>
@@ -75,9 +73,10 @@
 				</tr>
 				<tr>
 					<td>栄養成分表示</td>
-					<td><%= @product.nutrition %></td>
+					<td><%= simple_format(@product.nutrition) %></td>
 				</tr>
 			</table>
+
 			<% else %> <!-- <%# if @review.errors.any? %> -->
 			<table  class="table product-info">
 				<tr align="center">
@@ -86,7 +85,7 @@
 						<% if @product.product_image.present? %>
 						<%= link_to(image_tag(attachment_url(@product, :product_image, :fill, 250, 250, format: 'jpg')), attachment_url(@product, :product_image, :fit, 500, 500, format: 'jpg'), data: { lightbox: "product-set" }) %>
 						<% else %>
-						<%= image_tag 'no_image.jpg', size: '250x250' %>
+						<%= image_tag 'no_image_product.png', size: '250x250' %>
 						<% end %>
 
 						<!-- いいね -->
@@ -110,12 +109,12 @@
 					</td>
 				</tr>
 				<tr>
-					<td>商品名</td>
-					<td><%= @product.product_name %></td>
-				</tr>
-				<tr>
 					<td>メーカー</td>
 					<td><%= @product.maker %></td>
+				</tr>
+				<tr>
+					<td>発売日</td>
+					<td><%= @product.release_date %></td>
 				</tr>
 				<tr>
 					<td>アルコール度数</td>
@@ -123,7 +122,7 @@
 				</tr>
 				<tr>
 					<td>栄養成分表示</td>
-					<td><%= @product.nutrition %></td>
+					<td><%= simple_format(@product.nutrition) %></td>
 				</tr>
 			</table>
 
@@ -152,7 +151,7 @@
 		<div class="col-xs-7 col-xs-offset-1">
 			<!-- ページ内リンク -->
 			<% if user_signed_in? %>
-			<%= link_to("レビューを書く", "#new-review", class: "btn btn-warning btn-lg") %>
+			<%= link_to("レビューを書く", "#new-review", class: "btn btn-warning btn-lg review-anchor") %>
 			<% end %>
 			<div class="row">
 				<% if @reviews.empty? %>
@@ -162,6 +161,9 @@
 				</div>
 				<% else %>
 				<h3 class="p-review-counter">レビュー全 <%= @reviews.total_count %> 件</h3>
+
+				<% if @review.errors.any? %>
+				<% else %>
 				<!-- ソート機能 -->
 				<div class="review-sort-btn">
 					<div class="btn-group">
@@ -185,6 +187,7 @@
 						</ul>
 					</div>
 				</div>
+				<% end %>
 				<% @reviews.each do |review| %>
 				<div class="col-xs-12 review-box">
 					<!-- Newアイコン -->
@@ -198,16 +201,16 @@
 					<% end %>
 
 					<%= link_to user_path(review.user.id) do %>
-					<%= attachment_image_tag review.user, :profile_image, format: 'jpeg', fallback: "no_image.jpg", size: "75x75" %>
-					<%= review.user.name %>
+					<%= attachment_image_tag review.user, :profile_image, format: 'jpeg', fallback: "no_image_user.jpeg", size: "75x75" %>
+					<%= review.user.name.truncate(20) %>
 					<% end %><br>
 					<div class="rated" data-score="<%= review.review_star %>"></div>
 					<div class="p-date">
 						<% if review.created_at == review.updated_at %>
-						<label>投稿日：</label><%= review.created_at.strftime('%Y年%m月%d日 %H時%M分') %>
+						<label>投稿日：</label><%= review.created_at.strftime('%Y-%m-%d %H:%M') %>
 						<% else %>
-						<label>更新日：</label><%= review.updated_at.strftime('%Y年%m月%d日 %H時%M分') %>
-						<label>投稿日：</label><%= review.created_at.strftime('%Y年%m月%d日 %H時%M分') %>
+						<label>更新日：</label><%= review.updated_at.strftime('%Y-%m-%d %H:%M') %>
+						<label>投稿日：</label><%= review.created_at.strftime('%Y-%m-%d %H:%M') %>
 						<% end %>
 					</div>
 					<pre><%= review.opinion %></pre><br>
