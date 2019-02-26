@@ -1,6 +1,6 @@
 class ReviewsController < ApplicationController
 	 before_action :authenticate_user!
-	 before_action :correct_user, only: [:edit, :update]
+	 before_action :correct_user, only: [:edit, :update, :destroy]
 
 	def create
         @product = Product.find(params[:product_id])
@@ -11,7 +11,7 @@ class ReviewsController < ApplicationController
 			@reviews = @product.reviews.pluck(:review_star)
 			@product.average_star = @reviews.sum.to_f / @reviews.count
 			if @product.save
-				flash[:notice] = "レビューを投稿しました"
+				flash[:notice] = "レビューを投稿しました。"
 				redirect_to product_path(@product.id)
 			end
 		else
@@ -30,7 +30,7 @@ class ReviewsController < ApplicationController
 			@reviews = @product.reviews.pluck(:review_star)
 			@product.average_star = @reviews.sum.to_f / @reviews.count
 			if @product.save!
-				flash[:notice] = "レビューを編集しました"
+				flash[:notice] = "レビューを編集しました。"
 				redirect_to user_path(current_user)
 			end
 		else
@@ -50,7 +50,7 @@ class ReviewsController < ApplicationController
 			@reveiw = Review.new
 			@reviews = Kaminari.paginate_array(@product.reviews.order('updated_at DESC')).page(params[:page]).per(5)
 			if @product.save!
-				flash[:notice] = "レビューを削除しました"
+				flash[:notice] = "レビューを削除しました。"
 				redirect_to user_path(current_user)
 			end
 		else

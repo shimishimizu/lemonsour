@@ -24,8 +24,8 @@ class ActiveModel::Errors
   def full_messages
     map do |attribute, message|
       msg = full_message(attribute, message)
-      if msg == 'User1商品につき1レビューとなっております。'
-        message
+      if msg == 'Userは既に使用されています。'
+        "1商品につき1レビューとなっております。"
       else
         msg
       end
