@@ -10,7 +10,7 @@
 		<div class="product-thumb">
 			<%= link_to product_path(f.product.id) do %>
 			<div class="text-center">
-				<label><%= attachment_image_tag f.product, :product_image, format: 'jpeg', fallback: "no_image_product.png", size: "150x150", class: "favorite-image" %></label><br>
+				<label><%= attachment_image_tag f.product, :product_image, format: 'jpeg', fallback: "/images/no_image_product.png", size: "150x150", class: "favorite-image" %></label><br>
 				<label></label>
 				<label class="text-center"><%= f.product.product_name.truncate(15) %></label><br>
 			</div>

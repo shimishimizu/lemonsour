@@ -3,7 +3,7 @@
 		<div class="col-xs-4">
 			<table  class="table user-info">
 				<tr align="center">
-					<td style="border:none;" colspan="2"><%= attachment_image_tag @user, :profile_image, format: 'jpg', fallback: "no_image_user.jpeg", size: "150x150" %></td>
+					<td style="border:none;" colspan="2"><%= attachment_image_tag @user, :profile_image, format: 'jpg', fallback: "/images/no_image_user.jpeg", size: "150x150" %></td>
 				</tr>
 				<tr>
 					<td colspan="2" class="user-favorite-counter">
@@ -59,16 +59,16 @@
 				<div class="col-xs-12 user-review-box">
 					<!-- Newアイコン -->
 					<% if review.is_new %>
-					<p  class="new-review"><%= image_tag 'newlogo.gif', :size =>'40x15' %></p>
+					<p  class="new-review"><%= image_tag '/images/newlogo.gif', :size =>'40x15' %></p>
 					<% elsif review.is_both %>
-					<p  class="new-review"><%= image_tag 'newlogo.gif', :size =>'40x15' %></p>
-					<p  class="update-review"><%= image_tag 'updatelogo.gif', :size =>'60x15' %></p>
+					<p  class="new-review"><%= image_tag '/images/newlogo.gif', :size =>'40x15' %></p>
+					<p  class="update-review"><%= image_tag '/images/updatelogo.gif', :size =>'60x15' %></p>
 					<% elsif review.is_update %>
-					<p  class="update-review"><%= image_tag 'updatelogo.gif', :size =>'60x15' %></p>
+					<p  class="update-review"><%= image_tag '/images/updatelogo.gif', :size =>'60x15' %></p>
 					<% end %>
 
 					<%= link_to product_path(review.product.id) do %>
-					<%= attachment_image_tag review.product, :product_image, format: 'jpeg', fallback: "no_image_product.png", size: "75x75" %>
+					<%= attachment_image_tag review.product, :product_image, format: 'jpeg', fallback: "/images/no_image_product.png", size: "75x75" %>
 					<%= review.product.product_name.truncate(20) %>
 					<% end %><br>
 					<div class="rated" data-score="<%= review.review_star %>"></div>
