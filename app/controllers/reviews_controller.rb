@@ -46,14 +46,18 @@ class ReviewsController < ApplicationController
 			@product = @review_destroy.product
 			reviews = @product.reviews.pluck(:review_star)
 			@product.average_star = reviews.sum.to_f / reviews.count
-
-			@reveiw = Review.new
-			@reviews = Kaminari.paginate_array(@product.reviews.order('updated_at DESC')).page(params[:page]).per(5)
-			if @product.save!
+				if @product.average_star.nan?
+					@product.average_star = 0
+				end
+			if @product.save
 				flash[:notice] = "レビューを削除しました。"
 				redirect_to user_path(current_user)
 			end
 		else
+			@product = @review_destroy.product
+			@reveiw  = Review.new
+			@reviews = Kaminari.paginate_array(@product.reviews.order('updated_at DESC')).page(params[:page]).per(5)
+
 			render 'products/show'
 		end
 	end
