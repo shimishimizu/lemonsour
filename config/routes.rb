@@ -18,6 +18,9 @@ Rails.application.routes.draw do
   resources :users, only: [:show, :edit, :update] do
 	  resources :reviews, only: [:edit, :update, :destroy]
     resources :favorites, only: [:index]
+    collection do
+      get 'about'
+    end
   end
 
   resources :informations, only: [:index, :show]
