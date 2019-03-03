@@ -1,5 +1,5 @@
 class UsersController < ApplicationController
-   before_action :authenticate_user!
+   before_action :authenticate_user!, only: [:index, :show, :edit, :update]
    before_action :correct_user, only: [:edit, :update]
 
   def index
@@ -24,6 +24,9 @@ class UsersController < ApplicationController
     else
       render :edit
     end
+  end
+
+  def about
   end
 
   private
