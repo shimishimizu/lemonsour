@@ -1,24 +1,17 @@
-# README
+# とりあえずレモンサワー
 
-This README would normally document whatever steps are necessary to get the
-application up and running.
+Lemon Sour only review app
 
-Things you may want to cover:
+## Description
 
-* Ruby version
+You can post and view reviews of Lemon Sour.
+You can also register your favorites, sort items, and search for items.
+Administrators can manage products, users, reviews, favorites, information besides that.
 
-* System dependencies
 
-* Configuration
+## Installation
+	$ git clone https://github.com/shimishimizu/lemonsour.git
 
-* Database creation
+## License
 
-* Database initialization
-
-* How to run the test suite
-
-* Services (job queues, cache servers, search engines, etc.)
-
-* Deployment instructions
-
-* ...
+[MIT](lemonsour/LICENSE)
