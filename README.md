@@ -15,3 +15,4 @@ Administrators can manage products, users, reviews, favorites, information besid
 ## License
 
 [MIT](https://raw.githubusercontent.com/shimishimizu/lemonsour/master/LICENSE)
+
